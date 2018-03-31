@@ -1,0 +1,19 @@
+h1{
+  color: blue;
+}
+
+h1{
+  color: red;
+}
+
+.main-class{
+  color: blue;
+}
+
+#main-id {
+
+}
+
+a:hover {
+  color: red;
+}
