@@ -6,3 +6,11 @@
   border: 2px solid blue;
   height: 200px;
 }
+.progress {
+  margin: 25px;
+}
+.custom-border {
+  width: 300px;
+  height: 200px;
+  margin: 50px;
+}
