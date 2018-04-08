@@ -1,0 +1,56 @@
+.custom-class{
+  height: 200px;
+  border: 1px solid black;
+}
+.flex-container {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+}
+
+.flex-container > div {
+  height: 200px;
+  border: 1px solid black;
+}
+
+@media only screen  and (max-width: 480px) {
+  .custom1 {
+    width: 100%;
+  }
+
+  .custom2 {
+    width: 100%;
+  }
+  .custom3 {
+    width: 100%;
+  }
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+  .custom1 {
+    width: 50%;
+  }
+
+  .custom2 {
+    width: 50%;
+  }
+  .custom3 {
+    width: 100%;
+  }
+
+}
+
+@media only screen and (min-width: 768px) {
+  .custom1 {
+    width: 33%;
+  }
+
+  .custom2 {
+    width: 33%;
+  }
+  .custom3 {
+    width: 33%;
+  }
+
+}
