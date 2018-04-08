@@ -1,3 +1,11 @@
+.map-container {
+  margin-left: 100px;
+}
+.conatiner-map {
+  width: 75%;
+  margin-left: 300px;
+}
+
 h1{
   color: blue;
 }
