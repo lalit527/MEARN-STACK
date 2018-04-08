@@ -14,9 +14,11 @@ function foo(){
 }
 foo();
 var a = 2;
+
+
 //Compilation
-var a;
 function foo();
+var a;
 console.log(a);
 function foo(){
   console.log(a);
@@ -44,12 +46,24 @@ console.log(baz());
 console.log(a);
 var x  = 7;
 
+
+
+
 var a = 5;
 function foo(param1) {
   return param1;
   var param1 = 2;
 }
 console.log(foo(a));
+
+
+var a = 5;
+function foo(a) {
+  return a;
+  var a = 2;
+}
+console.log(foo(a));
+
 
 var a = 5;
 function foo(a) {
