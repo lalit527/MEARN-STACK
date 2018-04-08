@@ -30,3 +30,10 @@ IIFE
   var x=0;
   console.log(x);
 } ) ();
+
+
+var obj = {key1: 'value'};
+
+(function(a){
+	a.key2 = 'value2';
+})(obj);
