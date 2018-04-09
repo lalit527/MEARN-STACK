@@ -1,4 +1,4 @@
-//Strictly Typed Languages
+\//Strictly Typed Languages
 // int x = 5;
 // string str = "Hello";
 // int x = 5;
