@@ -44,3 +44,17 @@ function foo(a,b) {
 }
 
 foo(5,6,7,8);
+
+var a = 1;
+function foo(a){
+  c = 4;
+  return a;
+  var a = 2;
+}
+
+function bar() {
+  return c;
+  d = 7;
+}
+
+foo(a);
