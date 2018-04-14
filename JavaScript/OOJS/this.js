@@ -21,7 +21,7 @@ var obj = {
 }
 
 foo.call(obj);
-
+foo() --> foo.call(window)
 // call with parameter
 
 
@@ -76,6 +76,23 @@ var obj = {
 }
 
 bar() //Hello World
+
+//bind if you change property of same object
+// bind
+function foo() {
+  console.log(this.a);
+}
+
+var obj = {
+  a: "Hello World"
+}
+var bar = foo.bind(obj);
+bar()
+// bar will bind obj with foo
+
+obj.a = "Jon Doe"
+
+bar() //Jon Doe
 
 //Try above with Call and Apply
 
