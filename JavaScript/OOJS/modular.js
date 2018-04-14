@@ -35,7 +35,7 @@ var foo = (function() {
   var a = {key: 'value1'};
   return {
     bar: function() {
-      console.log(a.bar);
+      console.log(a.key);
     }
   }
 })();
@@ -47,10 +47,25 @@ var foo = (function() {
   var a = {key: 'value1'};
   var b = {
     bar: function() {
-      console.log(a.bar);
+      console.log(a.key);
     }
   }
   return b;
 })();
 
 foo.bar();
+
+// Issue with return
+
+function foo() {
+  return;
+  {
+    key: 'value1'
+  }
+}
+
+function foo() {
+  return {
+    key: 'value1'
+  }
+}

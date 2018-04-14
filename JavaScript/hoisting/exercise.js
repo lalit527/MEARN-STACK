@@ -17,22 +17,34 @@ var x = 3;
 
 
 //
+function foo() {
+	console.log("No Param");
+}
+
+function foo(a) {
+	console.log("One Param");
+	console.log(a,b,c,d);
+}
 
 function foo(a,b) {
+	console.log("Two Param");
 	console.log(a,b,c,d);
 }
 
 function foo(a,b, c) {
+	console.log("Three Param");
 	console.log(a,b,c,d);
 }
 
 function foo(a,b,c,d) {
+	console.log("Four Param");
 	console.log(a,b,c,d);
 }
 
 foo(5,2);
 foo(5,2,3);
 foo(5,2,3,4);
+foo();
 
 //
 function foo(a,b,c,d) {

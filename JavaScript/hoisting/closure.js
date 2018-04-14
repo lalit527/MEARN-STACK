@@ -24,6 +24,7 @@ function counter() {
   }
   return foo;
 }
+console.log(x); //Error
 
 var count = counter();
 
