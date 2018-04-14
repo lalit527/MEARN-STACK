@@ -42,3 +42,17 @@ var foo = function NAMED() {
 
 //foo() //Hi
 //NAMED() -- Error named is not a func
+
+function foo(callback) {
+    callback();
+}
+
+var bar = function() {
+  console.log("Hello");
+}
+
+foo(bar);
+
+foo(function() {
+  console.log("World");
+})
