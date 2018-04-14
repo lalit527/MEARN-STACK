@@ -60,5 +60,8 @@ var foo = (function() {
     publicAPI: publicAPI
   };
 })();
-
 foo.publicAPI.bar()
+//change above function to take two input and return
+// the addition of the numbers
+//the logic for addition should come from the private API
+foo.publicAPI.bar(a, b)
