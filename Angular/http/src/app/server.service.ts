@@ -7,19 +7,19 @@ import { Observable } from 'rxjs/Observable';
 export class ServerService {
   constructor(private http: Http) {}
   storeServers(servers: any[]) {
-    const headers = new Headers({'Content-Type': 'application/json'});
+     const headers = new Headers({'Content-Type': 'application/json'});
     // return this.http.post('https://ensemble-192705.firebaseio.com/data.json',
-    //   servers,
-    //   {headers: headers});
+    //   servers);
     return this.http.put('https://ensemble-192705.firebaseio.com/data.json',
       servers,
       {headers: headers});
   }
   getServers() {
-    return this.http.get('https://ensemble-192705.firebaseio.com/data')
+    return this.http.get('https://ensemble-192705.firebaseio.com/data.json')
       .map(
         (response: Response) => {
-          const data = response.json();
+          let data = response.json();
+          // data = data['-LA2ySRNKBRUWDtjUiyk'];
           for (const server of data) {
             server.name = 'FETCHED_' + server.name;
           }
