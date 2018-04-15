@@ -19,10 +19,22 @@ export class AppComponent implements OnInit{
       .subscribe(
         (servers: any[]) => {
           this.servers = servers
-          console.log(servers);
+          console.log(JSON.stringify(servers));
         },
         (error) => console.log(error)
       );
+  }
+
+  onSave() {
+    this.serverService.saveServer(this.servers)
+    .subscribe(
+      (data) => console.log(data),
+      (error) => console.log(error)
+    );
+  }
+
+  onAddServer(server: any) {
+    this.servers.push(server);
   }
 
   
