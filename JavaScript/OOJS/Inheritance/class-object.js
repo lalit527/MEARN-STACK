@@ -14,4 +14,6 @@ class Bar extends Foo {
 }
 
 var b1 = new Bar("b1");
+var b2 = new Bar("b2");
 b1.speak();
+b2.speak();
