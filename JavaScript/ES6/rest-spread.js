@@ -21,3 +21,22 @@ function foo(x) {
 
 
 foo(12, 1, 2, 3, 4);
+
+/**
+ * Spread
+ */
+
+ var params = ["hello", true, 7];
+ var others = [1, 2, ...params]; // [1, 2, "hello", true, 7] // 5
+
+ var params = ["hello", true, 7];
+ var others = [1, 2, params]; // [1, 2, ["hello", true, 7]] // 3
+
+ function foo(x, y, ...rest) {  // foo(1, 2, ["hello", true, 7])
+    return (x + y) * rest.length;
+ }
+
+ foo(1, 2, ...params); // foo(1, 2, "hello", true, 7);
+
+ var str = "hello world";
+ var chars = [...str];
