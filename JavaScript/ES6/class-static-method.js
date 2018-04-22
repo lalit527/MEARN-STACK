@@ -19,6 +19,14 @@ class Rectangle extends Shape {
         this.width = width;
         this.height = height;
     }
+
+    static defaultRectangle() {
+        return new Rectangle("default", 0, 0, 100, 100);
+    }
+
+    showDetail() {
+        console.log(this.id, this.x, this.y, this.width, this.height);
+    }
 }
 
 class Circle extends Shape {
@@ -26,7 +34,18 @@ class Circle extends Shape {
         super(id, x, y);
         this.radius = radius;
     }
+    static defaultCircle() {
+        return new Circle("default", 0, 0, 100);
+    }
+    showDetail() {
+        console.log(this.id, this.x, this.y, this.radius);
+    }
 }
+
+var rectangle = new Rectangle("custom", 10, 20, 100, 150);
+rectangle.showDetail();
+reactangle.defaultRectangle(); // error
+Rectangle.defaultRectangle(); // this will work
 
 /**
  * ES5 
@@ -49,6 +68,9 @@ var Rectangle = function(id, x, y, width, height) {
 
 Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
+Rectangle.defaultRectangle = function() {
+    return new Rectangle("default", 0, 0, 100, 100);
+}
 
 var Circle = function(id, x, y, radius) {
     Shape.call(this, id, x, y);
@@ -56,4 +78,7 @@ var Circle = function(id, x, y, radius) {
 }
 Circle.prototype = Object.create(Shape.prototype);
 Circle.prototype.constructor = Circle;
+Circle.defaultRectangle = function() {
+    return new Circle("default", 0, 0, 100, 100);
+}
 
