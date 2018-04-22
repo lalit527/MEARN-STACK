@@ -66,5 +66,5 @@ var obj = {
     },
     bar(param) {
         return param;
-    }
+    }  
 }
