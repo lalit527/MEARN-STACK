@@ -19,10 +19,16 @@ let idMaker = {
 }
 
 let id = idMaker[Symbol.iterator]();
-console.log(id.next());
-console.log(id.next());
-console.log(id.next());
-console.log(id.next());
-console.log(id.next());
-console.log(id.next());
-console.log(id.next());
+
+
+for(let i of idMaker) {
+    console.log(i);
+}
+
+// console.log(id.next());
+// console.log(id.next());
+// console.log(id.next());
+// console.log(id.next());
+// console.log(id.next());
+// console.log(id.next());
+// console.log(id.next());
