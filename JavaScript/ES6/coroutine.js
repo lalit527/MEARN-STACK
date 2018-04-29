@@ -1,6 +1,5 @@
-function async(proc, ...params) {
-    console.log(...params);
-    let iterator = proc(...params);
+function async(generator, ...params) {
+    let iterator = generator(...params);
     return new Promise((resolve, reject) => {
         let loop = (value) => {
             console.log('val', value);
@@ -41,6 +40,7 @@ async(function* (greeting){
     let foo = yield makeAsync("foo", 1000);
     let bar = yield makeAsync("bar", 2000);
     let baz = yield makeAsync("baz", 3000);
+    return `${greeting} ${foo} ${bar} ${baz}`
 }, "Hello", "World")
     .then((msg) => {
         console.log(msg);

@@ -11,8 +11,7 @@ function* foo2() {
     var y = yield 2; 
     return 5;
     var z = yield 3;
-    console.log(x, y, z);
-    
+    console.log(x, y, z);   
 }
 
 var it = foo2();
