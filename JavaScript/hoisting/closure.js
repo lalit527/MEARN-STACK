@@ -49,3 +49,11 @@ function counter() {
 }
 
 var count = counter();
+
+
+x;
+
+var x = function x() {
+  console.log(1);
+}
+
