@@ -21,3 +21,5 @@ var itr = foo();
 // }
 
 itr.next();
+itr.next();
+itr.next();

@@ -27,6 +27,6 @@ function fooLoop(start, end, step) {
 }
 
 var it = fooLoop(5,100,5);
-for() {
+for(var i=0; i<it.length; i++) {
     
 }

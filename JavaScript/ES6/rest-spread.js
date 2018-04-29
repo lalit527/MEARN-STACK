@@ -6,8 +6,15 @@ function foo(x, ...rest) {
     console.log(rest);
 }
 
+function foo(x, rest) {
+    console.log(x);
+    console.log(rest);
+}
+
 
 foo(12, 1, 2, 3, 4);
+
+
 
 /**
  * ES5

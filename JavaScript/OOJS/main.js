@@ -1,5 +1,5 @@
 //this
-
+/*
 1) In the global scope, 'this' will refer to
     the window object.
 
@@ -12,4 +12,4 @@
 
 4) If i create an object with 'new' keyword,
     this will refer to the newly created object
-  
+*/
