@@ -20,6 +20,7 @@ var itr = foo();
 //     console.log(i);  
 // }
 
-itr.next();
-itr.next();
-itr.next();
+console.log(itr.next());
+console.log(itr.next());
+console.log(itr.next());
+console.log(itr.next());
