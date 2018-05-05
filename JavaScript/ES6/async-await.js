@@ -22,5 +22,5 @@ foo().then((value) => {
     console.log('Inside Then', valu);
 });
 
-let value = await promise;
+// let value = await promise;
 
