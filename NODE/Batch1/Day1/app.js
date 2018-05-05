@@ -1,0 +1,13 @@
+const fs = require('fs');
+const os = require('os');
+const express = require('express');
+const main = require('./main');
+let cpu = os.cpus();
+// console.log(os.userInfo());
+// console.log(cpu.length);
+// console.log(express);
+console.log(main());
+console.log(main.foo());
+console.log(b);
+console.log( exports);
+console.log( require);
