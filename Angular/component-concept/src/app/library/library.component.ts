@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./library.component.css']
 })
 export class LibraryComponent implements OnInit {
-
+  books = ['Books1', 'Books2', 'Books3', 'Books4']
   constructor() { }
 
   ngOnInit() {
+  }
+
+  chidData(event: any) {
+    console.log('parent', event);
   }
 
 }
