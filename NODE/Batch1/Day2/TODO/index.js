@@ -27,7 +27,6 @@ if (args[0] === 'add') {
       console.log(err);
       return;
     }
-    console.log(data);
   });
 } else if(args[0] === 'delete') {
   fs.truncate('file.txt', (err, data) => {
