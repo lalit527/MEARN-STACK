@@ -10,4 +10,23 @@
     
 </div>
 
+<p [ngStyle]="{backgroundColor: getColor() }">This is an element with style</p>
+
+
+<p [ngClass]="{online: status === 'online'}">This is an element with class style</p>
+
+<div *ngIf="isEnabled; else notEnabled">This is a custom div with if statement</div>
+
+<ng-template #notEnabled>
+    <div #d (click)="onDivSelect(d)">This is a custom div with else statement</div>
+</ng-template>
+
+
+<ul>
+  <li *ngFor="let data of listOfData; let i = index">
+    {{data}}
+    {{i}}
+  </li>
+</ul>
+
 {{myData}}
