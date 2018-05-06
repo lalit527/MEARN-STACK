@@ -1,8 +1,20 @@
 const http = require('http');
+const { parse } = require('querystring');
 
 const server = http.createServer((req, res) => {
   if(req.method === 'POST') {
-    res.write(`{data: 'FROM POST'}`);
+    let body = [];
+    req.on('data', (chunk) => {
+      console.log('ch',chunk.toString());
+      body.push(chunk);
+    }).on('end', () => {
+      body = Buffer.concat(body).toString();
+      res.write(`{data: ${body}}`);
+      console.log(parse(body));
+      res.end();
+      // at this point, `body` has the entire request body stored in it as a string
+    });
+    
   } else {
     let url = req.url;
     if (url.substr(1) === 'add') {
@@ -12,10 +24,11 @@ const server = http.createServer((req, res) => {
     } else {
       res.write(`{data: 'Unknown'}`);
     }
+    res.end();
   }
   
   
-  res.end();
+  
 });
 
 server.listen(3200);
