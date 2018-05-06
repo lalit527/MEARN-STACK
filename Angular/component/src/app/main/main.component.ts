@@ -9,8 +9,25 @@ import { Component } from '@angular/core';
 export class MainComponent {
   isDisabled = 'Data';
   myData = 'Angular';
+  status = 'offline';
+  isEnabled = false;
+  listOfData = ['apple', 'banana', 'grapes', 'mango'];
+  constructor() {
+    setTimeout(() => {
+      console.log('method');
+      this.status = 'online';
+      this.isEnabled = true;
+    }, 4000);
+  }
   onClick() {
     alert(this.myData);
+  }
+
+  getColor() {
+    return 'red';
+  }
+  onDivSelect(d: any) {
+    console.dir(d);
   }
   
 }

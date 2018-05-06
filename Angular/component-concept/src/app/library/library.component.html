@@ -1,0 +1,12 @@
+<p>
+  library works!
+</p>
+<div>
+    <app-books class="book-container"
+      *ngFor="let book of books"
+      [setData]="book"
+      (created)="chidData($event)">
+
+      <p #contentData>This is a custom data in parent</p>
+    </app-books>
+</div>
