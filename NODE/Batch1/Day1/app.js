@@ -9,5 +9,4 @@ let cpu = os.cpus();
 console.log(main());
 console.log(main.foo());
 console.log(b);
-console.log( exports);
-console.log( require);
+console.log(module.paths);
