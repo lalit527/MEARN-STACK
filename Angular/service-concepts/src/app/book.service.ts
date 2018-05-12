@@ -1,4 +1,8 @@
+import { Injectable, EventEmitter, Output } from '@angular/core';
+
+@Injectable()
 export class BookService {
+  @Output() bookChange:EventEmitter<any> = new EventEmitter();
   books = [
     {
       name: 'Book1',
@@ -18,6 +22,12 @@ export class BookService {
     }
   ]
   getBooks() {
-    return this.books.slice();
+    this.bookChange.emit(this.books.slice());
+  };
+
+  addBook(book) {
+    console.log(book);
+    this.books.push(book);
+
   }
 }

@@ -1,7 +1,8 @@
-<p>
-  <ul *ngFor="let book of books">
-    <li>
-      {{book}}
+
+  <ul>
+    <li *ngFor="let book of books; let i = index">
+      {{i}}
+      {{book.name}}
+      {{book.author}}
     </li>
   </ul>
-</p>
