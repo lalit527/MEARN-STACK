@@ -1,13 +1,4 @@
-let obj = {
-  p123: {a:'Key1'},
-  p234: {a:'Key2'},
-  p456: {a:'Key1'}
-}
+const moment = require('moment');
+console.log(moment("2018-05-09T11:49:00+05:30").fromNow());
 
-let arr = [];
-for (let key in obj) {
-  console.log(key);
-  arr.push(obj[key]);
-}
-
-console.log(arr);
+console.log(moment().toDate());

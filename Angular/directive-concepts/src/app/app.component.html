@@ -1,0 +1,11 @@
+<div style="text-align:center" class="main-container">
+  <button class="btn btn-primaray"
+   (click)="activateData()">Show Data
+  </button>
+  {{isActive}}
+  <div *ngIf="isActive">Hello </div>
+  <p appBasic>This will be style using custom drective</p>
+  <p [betterDirective]="'red'" defaultColor="yellow">This will have better Style</p>
+  <div *appUnless="isActive">Hello World </div>
+</div>
+
