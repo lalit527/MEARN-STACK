@@ -22,12 +22,15 @@ export class BookService {
     }
   ]
   getBooks() {
-    this.bookChange.emit(this.books.slice());
+    setTimeout(() => {
+      this.bookChange.emit(this.books.slice());
+    }, 0);
+    return this.bookChange;
   };
 
   addBook(book) {
     console.log(book);
     this.books.push(book);
-
+    this.bookChange.emit(this.books.slice());
   }
 }
