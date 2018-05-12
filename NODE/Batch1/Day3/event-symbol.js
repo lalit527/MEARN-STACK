@@ -24,3 +24,13 @@ event.on(Symbol(), (data) => {
 });
 event.emit(Symbol(), 'Hello World');
 
+console.log("=================");
+event.on('custom', (data) => { 
+  return new Error('error from evet');
+  console.log(data);
+});
+event.on('custom', (data) => {
+  console.log(data);
+});
+event.emit('custom', 'Hello World');
+
