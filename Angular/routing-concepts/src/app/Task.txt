@@ -1,0 +1,15 @@
+1) Service for Books:- 
+  a) Books
+  b) Service should load all books in books component 
+      and book detail should come from book component
+2) Service for Author:-
+  a) All Author name
+
+3) Show all the book and Author names
+  Book, it should take me to books component
+  Author
+
+4) From Library I should be able to add books or authors
+
+5) From Book Component I should be able to edit the book etail
+  Same with Author Component

@@ -32,5 +32,8 @@ event.on('custom', (data) => {
 event.on('custom', (data) => {
   console.log(data);
 });
+event.on('error', (err) => {
+  
+})
 event.emit('custom', 'Hello World');
 
