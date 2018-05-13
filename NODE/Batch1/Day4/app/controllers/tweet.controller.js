@@ -15,7 +15,16 @@ module.exports.tweetController = function(app) {
   });
   routes.get('/tweet/:id', (req, res) => {
     let id = req.params['id'];
-    res.send(`From tweet ${id}`);
+    tweetModel.findOne({'_id': id}, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.send('Someting Went wrong');
+      }
+      if(result) {
+        return res.send(result);
+      } 
+      return res.send('No Data Found');
+    });
   });
   routes.post('/add', (req, res) => {
     let user = req.body.user;
