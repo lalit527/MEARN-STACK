@@ -8,6 +8,7 @@ import { BookService } from '../book.service';
 export class LibrarayComponent implements OnInit {
   @ViewChild('name') nameData = ElementRef;
   @ViewChild('author') author = ElementRef;
+  
   constructor(private bookService: BookService) { }
 
   ngOnInit() {
