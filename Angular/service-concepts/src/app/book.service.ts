@@ -29,8 +29,8 @@ export class BookService {
   };
 
   addBook(book) {
-    console.log(book);
     this.books.push(book);
+    console.log(this.books);
     this.bookChange.emit(this.books.slice());
   }
 }
