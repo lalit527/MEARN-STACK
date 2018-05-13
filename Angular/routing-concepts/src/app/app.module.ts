@@ -10,6 +10,7 @@ import { AuthorsComponent } from './authors/authors.component';
 import { AutorComponent } from './authors/autor/autor.component';
 import { AppRoutingModule } from './modules/app-routing.module';
 import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoginComponent } from './login/login.component';
     BookComponent,
     AuthorsComponent,
     AutorComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
