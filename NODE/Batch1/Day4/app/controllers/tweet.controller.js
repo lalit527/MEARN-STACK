@@ -43,6 +43,21 @@ module.exports.tweetController = function(app) {
     })
 
   });
+
+  routes.delete('/delete/:id', (req, res) => {
+    let id = req.params['id'];
+    tweetModel.findOneAndDelete({'_id': id}, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.send('Someting Went wrong');
+      }
+      if(result) {
+        return res.send(result);
+      } 
+      return res.send('No Data Found');
+    })
+  });
+
   routes.post('/add', (req, res) => {
     let name = req.body.name;
     let userId = req.body.userId;
