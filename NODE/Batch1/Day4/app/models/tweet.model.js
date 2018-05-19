@@ -7,7 +7,7 @@ const tweet = new Schema({
     name: String,
     userId: Number
   },
-  message: {type: String},
+  message: {type: String, require:true},
   comments: [
       {
         user: {

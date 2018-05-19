@@ -10,7 +10,7 @@ module.exports.tweetController = function(app) {
       if(err) {
         return res.send('Some error occured');
       } 
-      return res.send(result);
+      res.send(result);
     })
   });
   routes.get('/tweet/:id', (req, res) => {
