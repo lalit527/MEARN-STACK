@@ -10,6 +10,8 @@ const tweetController = require('./app/controllers/tweet.controller');
 app.use(bodyParser.json({limit:'10mb',extended:true}));
 app.use(bodyParser.urlencoded({limit:'10mb',extended:true}));
 
+app.set('view engine', 'pug');
+
 const dbpath = "mongodb://localhost/sample"
 mongoose.connect(dbpath, () => {
   console.log('connected to db');

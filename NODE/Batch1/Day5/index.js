@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const userModel = require('./app/models/user.model');
 const tweetModel = require('./app/models/tweet.model');
+const commentModel = require('./app/models/comment.model');
 const userController = require('./app/controllers/user.controller');
 const tweetController = require('./app/controllers/tweet.controller');
 
