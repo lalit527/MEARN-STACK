@@ -7,9 +7,13 @@ const tweetModel = require('./app/models/tweet.model');
 const commentModel = require('./app/models/comment.model');
 const userController = require('./app/controllers/user.controller');
 const tweetController = require('./app/controllers/tweet.controller');
+const path = require('path');
 
 app.use(bodyParser.json({limit:'10mb',extended:true}));
 app.use(bodyParser.urlencoded({limit:'10mb',extended:true}));
+
+app.set('view engine', 'pug');
+app.set('views',path.join(__dirname + '/app/views'));
 
 const dbpath = "mongodb://localhost/sample"
 mongoose.connect(dbpath, () => {
