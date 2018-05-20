@@ -6,7 +6,14 @@ const userModel = mongoose.model('User');
 
 module.exports.userController = function(app) {
   routes.get('/all', (req, res) => {
-    res.send('From Users');
+    userModel.find({}, (err, result) => {
+      if(err){
+        return res.send('No record found'+err);
+      }
+      let user = result[0];
+      console.log(user);
+      res.render('userdetail', {result})
+    })
   }),
   routes.get('/user/:id', (req, res) => {
     let id = req.params['id'];
