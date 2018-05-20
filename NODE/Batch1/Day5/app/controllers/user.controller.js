@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const express = require('express');
-
+const auth = require("./../../middleware/auth");
 const routes = express.Router();
 const userModel = mongoose.model('User');
 
 module.exports.userController = function(app) {
-  routes.get('/all', (req, res) => {
+  routes.get('/all', auth.checkLogin, (req, res) => {
     userModel.find({}, (err, result) => {
       if(err){
         return res.send('No record found'+err);
@@ -105,9 +105,17 @@ module.exports.userController = function(app) {
     });
   });
 
-  routes.get('/', (req, res) => {
-    
-    res.send({'data':'Hello World'});
+  routes.post('/login', (req, res) => {
+    let email = req.body.email;
+    let password = req.body.pwd;
+    userModel.findByCredential(email, password)
+          .then((result) => {
+            req.session.user = result;
+            res.send('success');
+          })
+          .catch((error) => {
+            res.send(err);
+          });
   });
 
   app.use('/user', routes);
