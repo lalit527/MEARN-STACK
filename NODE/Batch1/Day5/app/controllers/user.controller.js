@@ -10,21 +10,28 @@ module.exports.userController = function(app) {
       if(err){
         return res.send('No record found'+err);
       }
-      let user = result[0];
-      console.log(user);
-      res.render('userdetail', {result})
+      res.render('users', {result})
     })
-  }),
-  routes.get('/user/:id', (req, res) => {
-    let id = req.params['id'];
-    res.send(`From user ${id}`);
   });
+
+  routes.get('/detail/:id', (req, res) => {
+    let id = req.params['id'];
+    userModel.findOne({'_id': id}, (err, result) => {
+      if(err) {
+        return res.send(`Some error occured ${err}`)
+      }
+      res.render('userdetail', {user: result});
+    })
+  });
+
   routes.get('/login', (req, res) => {
     res.render('login');
   });
+
   routes.get('/signup', (req, res) => {
     res.render('signup');
   });
+
   routes.post('/signup', (req, res) => {
     let fname = req.body.fname;
     let lname = req.body.lname;
@@ -48,9 +55,11 @@ module.exports.userController = function(app) {
       res.redirect('/tweet/v1/all');
     });
   });
+
   routes.get('/', (req, res) => {
     
     res.send({'data':'Hello World'});
-  })
+  });
+
   app.use('/user', routes);
 }
