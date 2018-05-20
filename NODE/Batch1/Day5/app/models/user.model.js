@@ -9,7 +9,7 @@ const user = new Schema({
   lname: {type: String, required: true},
   email: {type: String, required: true, unique: true},
   mobile: {type: Number, required: false},
-  username: {type: Number, required: true, unique: true},
+  username: {type: String, required: true, unique: true},
   password: {type: String, required: true, minlength: 6}
 });
 

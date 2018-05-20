@@ -11,6 +11,12 @@ module.exports.userController = function(app) {
   routes.get('/user/:id', (req, res) => {
     let id = req.params['id'];
     res.send(`From user ${id}`);
+  });
+  routes.get('/login', (req, res) => {
+    res.render('login');
+  });
+  routes.send('/', (req, res) => {
+    res.send({'data':'Hello World'});
   })
   app.use('/user', routes);
 }

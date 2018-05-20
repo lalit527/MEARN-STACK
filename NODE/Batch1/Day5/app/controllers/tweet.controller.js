@@ -31,7 +31,11 @@ module.exports.tweetController = function(app) {
   routes.put('/tweet/:id', (req, res) => {
     let id = req.params['id'];
     let newMessage = req.body.message;
-    tweetModel.findOneAndUpdate({'_id': id}, {$set: {message: newMessage}}, (err, result) => {
+    let obj = {
+      message: newMessage,
+      userName: 'Lalit'
+    };
+    tweetModel.findOneAndUpdate({'_id': id}, {$set: obj}, (err, result) => {
       if (err) {
         console.log(err);
         return res.send('Someting Went wrong');
