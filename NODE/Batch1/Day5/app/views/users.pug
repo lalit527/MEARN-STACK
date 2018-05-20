@@ -6,6 +6,7 @@ html(lang='en')
     title User Detail
   body
     section.container
+      for user in result
         P #{user.fname}
         P #{user.lname}
         P #{user.username}
@@ -13,6 +14,4 @@ html(lang='en')
         P #{user.mobile}
         P #{user.password}
         p
-         a(href='http://localhost:3002/user/detail/update/'+user.id) update
-         form(method='post', action='http://localhost:3002/user/detail/delete/'+user.id)
-          input(type='submit', name='', value='delete')
+         a(href='http://localhost:3002/user/detail/'+user._id) details

@@ -10,21 +10,77 @@ module.exports.userController = function(app) {
       if(err){
         return res.send('No record found'+err);
       }
-      let user = result[0];
-      console.log(user);
-      res.render('userdetail', {result})
+      res.render('users', {result})
     })
-  }),
-  routes.get('/user/:id', (req, res) => {
-    let id = req.params['id'];
-    res.send(`From user ${id}`);
   });
+
+  routes.get('/detail/:id', (req, res) => {
+    let id = req.params['id'];
+    userModel.findOne({'_id': id}, (err, result) => {
+      if(err) {
+        return res.send(`Some error occured ${err}`)
+      }
+      res.render('userdetail', {user: result});
+    })
+  });
+
+  routes.get('/detail/update/:id', (req, res) => {
+    let id = req.params['id'];
+    userModel.findOne({'_id': id}, (err, result) => {
+      if(err) {
+        return res.send(`Some error occured ${err}`)
+      }
+      console.log(result);
+      res.render('updateuser', {user: result});
+    })
+  });
+
+  routes.post('/detail/update/:id', (req, res) => {
+    let id = req.params['id'];
+    let fname = req.body.fname;
+    let lname = req.body.lname;
+    let email = req.body.email;
+    let mobile = req.body.mobile;
+    let username = req.body.username;
+    let password = req.body.pwd;
+    let body = {
+      fname: fname,
+      lname: lname,
+      email: email,
+      mobile: mobile,
+      username: username,
+      password: password
+    }
+    userModel.findOneAndUpdate({'_id': id}, body, (err, result) => {
+      if(err) {
+        return res.send(`Some error occured ${err}`)
+      }
+      console.log(result);
+      res.redirect('/user/all');
+    })
+  });
+
+
   routes.get('/login', (req, res) => {
     res.render('login');
   });
+
   routes.get('/signup', (req, res) => {
     res.render('signup');
   });
+
+  routes.post('/detail/delete/:id', (req, res) => {
+    let id = req.params['id'];
+    console.log('In delete');
+    userModel.findOneAndRemove({'_id':id}, (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.send('Someting Went wrong');
+      }
+      res.redirect('/user/all');
+    });
+  })
+
   routes.post('/signup', (req, res) => {
     let fname = req.body.fname;
     let lname = req.body.lname;
@@ -48,9 +104,11 @@ module.exports.userController = function(app) {
       res.redirect('/tweet/v1/all');
     });
   });
+
   routes.get('/', (req, res) => {
     
     res.send({'data':'Hello World'});
-  })
+  });
+
   app.use('/user', routes);
 }
