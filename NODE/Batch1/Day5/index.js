@@ -9,6 +9,7 @@ const userController = require('./app/controllers/user.controller');
 const tweetController = require('./app/controllers/tweet.controller');
 const path = require('path');
 const logger = require('morgan');
+const session = require('express-session');
 
 app.use(logger('dev'));
 app.use(bodyParser.json({limit:'10mb',extended:true}));

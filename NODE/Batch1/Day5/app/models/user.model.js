@@ -13,4 +13,20 @@ const user = new Schema({
   password: {type: String, required: true, minlength: 6}
 });
 
+user.statics.findByCredential = function(email, password) {
+  const user = this;
+  return new Promise((resolve, reject) => {
+    user.findOne({email}).then((result) => {
+      if(!result) {
+        return reject();
+      }
+      if (password === result.password){
+        return resolve(result);
+      } else {
+        return reject('password doesn\'t match');
+      }
+    });
+  });
+};
+
 mongoose.model('User', user);

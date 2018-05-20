@@ -105,9 +105,16 @@ module.exports.userController = function(app) {
     });
   });
 
-  routes.get('/', (req, res) => {
-    
-    res.send({'data':'Hello World'});
+  routes.post('/login', (req, res) => {
+    let email = req.body.email;
+    let password = req.body.pwd;
+    userModel.findByCredential(email, password)
+          .then((result) => {
+            res.send('success');
+          })
+          .catch((error) => {
+            res.send(err);
+          });
   });
 
   app.use('/user', routes);
