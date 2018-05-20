@@ -19,9 +19,30 @@ module.exports.userController = function(app) {
     res.render('signup');
   });
   routes.post('/signup', (req, res) => {
-    res.redirect('/tweet/v1/all');
+    let fname = req.body.fname;
+    let lname = req.body.lname;
+    let email = req.body.email;
+    let mobile = req.body.mobile;
+    let username = req.body.username;
+    let password = req.body.pwd;
+    console.log(fname, lname, email, mobile, username, password)
+    let user = new userModel({
+      fname: fname,
+      lname: lname,
+      email: email,
+      mobile: mobile,
+      username: username,
+      password: password
+    });
+    user.save((err, result) => {
+      if(err) {
+        return res.send('some error'+err);
+      }
+      res.redirect('/tweet/v1/all');
+    });
   });
   routes.get('/', (req, res) => {
+    
     res.send({'data':'Hello World'});
   })
   app.use('/user', routes);

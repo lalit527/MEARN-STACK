@@ -10,14 +10,16 @@ html(lang='en')
         h1 Sign up to the Web App
         form(method='post', action='http://localhost:3002/user/signup')
           p
-            input(type='text', name='fName', value='', placeholder='firstName', required='')
+            input(type='text', name='fname', value='', placeholder='firstName', required='')
           p
-            input(type='text', name='lastName', value='', placeholder='lastName', required='')
+            input(type='text', name='lname', value='', placeholder='lastName', required='')
           p
-            input(type='number', name='mobileNumber', value='', placeholder='mobile number', required='')
+            input(type='number', name='mobile', value='', placeholder='mobile number', required='')
           p
             input(type='email', name='email', value='', placeholder='email', required='')
           p
-            input(type='password', name='password', value='', placeholder='Password', required='')
+            input(type='text', name='username', value='', placeholder='User Name', required='')
+          p
+            input(type='password', name='pwd', value='', placeholder='Password', required='')
           p.submit
             input(type='submit', name='', value='sign up')
