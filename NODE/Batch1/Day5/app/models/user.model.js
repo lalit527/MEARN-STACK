@@ -23,6 +23,8 @@ const user = new Schema({
   }]
 });
 
+
+
 user.statics.findByCredential = function(email, password) {
   const user = this;
   return new Promise((resolve, reject) => {
@@ -38,5 +40,19 @@ user.statics.findByCredential = function(email, password) {
     });
   });
 };
+
+user.statics.createUser = function(data) {
+  const user = this;
+  let newUser = new user(data);
+  return new Promise((resolve, reject) => {
+    newUser.save((err, result) => {
+      if(err) {
+        reject('some error'+err);
+      } else {
+        resolve('/tweet/v1/all');
+      }
+    });
+  });
+}
 
 mongoose.model('User', user);
