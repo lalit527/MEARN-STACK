@@ -10,20 +10,8 @@ const user = new Schema({
   email: {type: String, required: true, unique: true},
   mobile: {type: Number, required: false},
   username: {type: String, required: true, unique: true},
-  password: {type: String, required: true, minlength: 6},
-  token: [{
-    access: {
-        type: String,
-        required: true
-    },
-    token:{
-        type: String,
-        required: true
-    }
-  }]
+  password: {type: String, required: true, minlength: 6}
 });
-
-
 
 user.statics.findByCredential = function(email, password) {
   const user = this;
@@ -40,19 +28,5 @@ user.statics.findByCredential = function(email, password) {
     });
   });
 };
-
-user.statics.createUser = function(data) {
-  const user = this;
-  let newUser = new user(data);
-  return new Promise((resolve, reject) => {
-    newUser.save((err, result) => {
-      if(err) {
-        reject('some error'+err);
-      } else {
-        resolve('/tweet/v1/all');
-      }
-    });
-  });
-}
 
 mongoose.model('User', user);
