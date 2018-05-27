@@ -3,6 +3,7 @@ const express = require('express');
 const auth = require("./../../middleware/auth");
 const routes = express.Router();
 const userModel = mongoose.model('User');
+const userService = require('./../services/user.service');
 
 module.exports.userController = function(app) {
   routes.get('/all', auth.checkLogin, (req, res) => {
@@ -51,7 +52,7 @@ module.exports.userController = function(app) {
       username: username,
       password: password
     }
-    userModel.findOneAndUpdate({'_id': id}, body, (err, result) => {
+    userModel.findOneAndUpdate({'_id': id}, body, {runValidators: true}, (err, result) => {
       if(err) {
         return res.send(`Some error occured ${err}`)
       }
@@ -82,27 +83,21 @@ module.exports.userController = function(app) {
   })
 
   routes.post('/signup', (req, res) => {
-    let fname = req.body.fname;
-    let lname = req.body.lname;
-    let email = req.body.email;
-    let mobile = req.body.mobile;
-    let username = req.body.username;
-    let password = req.body.pwd;
-    console.log(fname, lname, email, mobile, username, password)
-    let user = new userModel({
-      fname: fname,
-      lname: lname,
-      email: email,
-      mobile: mobile,
-      username: username,
-      password: password
-    });
-    user.save((err, result) => {
-      if(err) {
+    userService.sigupHelper(req, res)
+      .then((data, token) => {
+        console.log(data, token);
+        res.set({
+          'Content-Type': 'application/json',
+          'Content-Length': '123',
+          'ETag': '12345',
+          'Access-Control-Allow-Origin': '*',
+          'X-Powered-By': '',
+          'x-auth-token': token
+        }).send(data);
+      })
+      .catch((err) => {
         return res.send('some error'+err);
-      }
-      res.redirect('/tweet/v1/all');
-    });
+      });
   });
 
   routes.post('/login', (req, res) => {
