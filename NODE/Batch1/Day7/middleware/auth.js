@@ -26,15 +26,6 @@ module.exports.authenticate = function(req, res, next) {
   });
 }
 
-module.exports.authenticateAdmin = function(req, res, next) {
-  let user = req.user;
-  if (user.role === 'admin') {
-    next()
-  } else {
-    res.send({'data': 'user is not authenticated'});
-  }
-}
-
 
 module.exports.checkLogin = function(req,res,next){
 	if(!req.user && !req.session.user){

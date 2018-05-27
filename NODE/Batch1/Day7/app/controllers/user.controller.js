@@ -15,7 +15,7 @@ module.exports.userController = function(app) {
     })
   });
 
-  routes.get('/detail/:id', auth.authenticate, auth.authenticateAdmin, (req, res) => {
+  routes.get('/detail/:id', (req, res) => {
     let id = req.params['id'];
     userModel.findOne({'_id': id}, (err, result) => {
       if(err) {
@@ -107,8 +107,11 @@ module.exports.userController = function(app) {
     let password = req.body.password;
     userModel.findByCredential(email, password)
           .then((result) => {
-            req.session.user = result;
-            res.send('success');
+            console.log(result);
+            return result.generateAuthToken().then((token) => {
+              res.send('success' + token);
+            });
+            
           })
           .catch((error) => {
             res.send(err);
