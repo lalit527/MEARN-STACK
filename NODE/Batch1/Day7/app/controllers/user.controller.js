@@ -104,11 +104,14 @@ module.exports.userController = function(app) {
 
   routes.post('/login', (req, res) => {
     let email = req.body.email;
-    let password = req.body.pwd;
+    let password = req.body.password;
     userModel.findByCredential(email, password)
           .then((result) => {
-            req.session.user = result;
-            res.send('success');
+            console.log(result);
+            return result.generateAuthToken().then((token) => {
+              res.send('success' + token);
+            });
+            
           })
           .catch((error) => {
             res.send(err);

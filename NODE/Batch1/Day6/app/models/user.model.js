@@ -19,6 +19,9 @@ const user = new Schema({
 		  message: '{VALUE} is not a valid email'
     }
   },
+  role: {
+    type: String, enum: ['admin', 'user']
+  },
   mobile: {type: Number
           , required: false
   },

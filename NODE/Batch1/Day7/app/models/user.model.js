@@ -72,22 +72,32 @@ user.statics.findByToken = function(token) {
 
 user.statics.findByCredential = function(email, password) {
   const user = this;
-  return new Promise((resolve, reject) => {
-    user.findOne({email}).then((result) => {
+    return user.findOne({email}).then((result) => {
+      console.log('email-bcrypt',result);
       if(!result) {
-        return reject('Error Occured' + err);
+        return Promise.reject('Error Occured' + err);
       }
       return new Promise(function(resolve, reject){
+        console.log('email, pass', password, result.password);
         bcrypt.compare(password, result.password, function(err, res){
-          if(res){
-             resolve(result);
-          } else{
+          if(err){
+            console.log('bcrypt',err);
             reject('Error Occured' + err);
+            
+            // result.generateAuthToken().then((token) => {
+            //   console.log('A value', token);
+            //   resolve({
+            //     result: result,
+            //     token: token
+            //   });
+            //  });
+          } else{
+            console.log('bcrypt',res);
+            resolve(result);
           }
         });
       });
     });
-  });
 }
 
 user.statics.createUser = function(data) {
