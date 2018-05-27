@@ -47,7 +47,27 @@ user.methods.generateAuthToken = function() {
       token: token
   });
 
-  return user.save().then((success) => token);
+  return user.save().then((success) => {
+    console.log('success', success);
+    console.log('token', token);
+    return token;
+  });
+}
+
+user.statics.findByToken = function(token) {
+  const users = this;
+	let decoded;
+	try{
+    decoded = jwt.verify(token, jwtKey.getToken());
+	}catch(e){
+    return Promise.reject(e);
+	}
+
+	return users.findOne({
+		'_id': decoded._id,
+		'token.token': token,
+		'token.access': 'auth'
+	});
 }
 
 user.statics.findByCredential = function(email, password) {
@@ -79,9 +99,14 @@ user.statics.createUser = function(data) {
         reject('some error'+err);
       } else {
         // resolve('/tweet/v1/all');
-        result.generateAuthToken().then((token) => {
-          resolve(result, token);
+        let value = result.generateAuthToken().then((token) => {
+          console.log('A value', token);
+          resolve({
+            result: result,
+            token: token
+          });
         })
+       
       }
     });
   });

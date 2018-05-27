@@ -25,8 +25,9 @@ module.exports.userController = function(app) {
     })
   });
 
-  routes.get('/detail/update/:id', (req, res) => {
+  routes.get('/detail/update/:id', auth.authenticate, (req, res) => {
     let id = req.params['id'];
+    req.user
     userModel.findOne({'_id': id}, (err, result) => {
       if(err) {
         return res.send(`Some error occured ${err}`)
@@ -85,15 +86,16 @@ module.exports.userController = function(app) {
   routes.post('/signup', (req, res) => {
     userService.sigupHelper(req, res)
       .then((data, token) => {
-        console.log(data, token);
+        console.log('This Data',data, token);
+        console.log(' token', token);
         res.set({
           'Content-Type': 'application/json',
           'Content-Length': '123',
           'ETag': '12345',
           'Access-Control-Allow-Origin': '*',
           'X-Powered-By': '',
-          'x-auth-token': token
-        }).send(data);
+          'x-auth-token': data.token
+        }).send(data.result);
       })
       .catch((err) => {
         return res.send('some error'+err);
