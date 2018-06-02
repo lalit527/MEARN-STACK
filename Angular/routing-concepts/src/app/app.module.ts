@@ -11,6 +11,9 @@ import { AutorComponent } from './authors/autor/autor.component';
 import { AppRoutingModule } from './modules/app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
+import { AuthenticationService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,7 @@ import { HeaderComponent } from './header/header.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthenticationService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
