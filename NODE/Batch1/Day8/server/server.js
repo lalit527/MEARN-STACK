@@ -20,14 +20,16 @@ server.listen(port, () => {
 });
 
 io.on('connection', function (socket) {
-  console.log('A new user has been connected');
+  console.log(socket);
+  socket.broadcast.emit('new user', 'A new user has connected');
   socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
     console.log(data);
   });
   socket.on('new message', function (data) {
     console.log('A new Event', data);
-    socket.emit('ack', 'I have recived your message');
+    io.emit('new message', data);
+
   });
 
   socket.on('disconnect', function() {
