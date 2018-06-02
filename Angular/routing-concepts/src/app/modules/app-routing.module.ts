@@ -5,13 +5,14 @@ import { BookComponent } from './../books/book/book.component';
 import { AuthorsComponent } from './../authors/authors.component';
 import { AutorComponent } from './../authors/autor/autor.component';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from '../auth-guard.service';
 
 const appRoutes: Routes = [
   {path:'', component: LibrarayComponent},
-  {path:'books', component: BooksComponent, children: [
+  {path:'books', canActivateChild:[AuthGuard], component: BooksComponent, children: [
     {path:'book', component:BookComponent}
   ]},
-  {path:'authors', component: AuthorsComponent, children: [
+  {path:'authors', canActivate: [AuthGuard], component: AuthorsComponent, children: [
     {path:'author', component:AutorComponent}
   ]}
 ]
