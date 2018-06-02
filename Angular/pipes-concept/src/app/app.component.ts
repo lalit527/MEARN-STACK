@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   loading = 'loading'; 
+  today = new Date();
+  dummyStatus = '';
   appStatus = new Promise((resolve, reject) => {
     
     setTimeout(() => {
+      this.dummyStatus = 'stable';
       resolve('stable');
     }, 5000);
   });

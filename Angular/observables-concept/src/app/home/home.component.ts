@@ -17,17 +17,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit() {
+    // const myNumbers = Observable.interval(1000);
     const myNumbers = Observable.interval(1000)
       .map((data: number) => {
           return data * 2;
         }
       );
 
+    // myNumbers.subscribe(
+    //   (number: number) => {
+    //     console.log(number);
+    //   }
+    // );
+
+    // This is required for removing the observable event
     // this.numberCounter = myNumbers.subscribe(
     //   (number: number) => {
     //     console.log(number);
     //   }
     // );
+    
 
     const myObservable  = Observable.create((observer: Observer<string>) => {
       setTimeout(() => {
@@ -40,15 +49,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       setTimeout(() => {
         observer.next('My third response');
-      }, 5000);
-
-      setTimeout(() => {
-        observer.error('My error response');
-      }, 8000);
-
-      setTimeout(() => {
-        observer.complete();
       }, 6000);
+
+      // setTimeout(() => {
+      //   observer.error('My error response');
+      // }, 5000);
+
+      // setTimeout(() => {
+      //   observer.complete();
+      // }, 3000);
 
       
       setTimeout(() => {
@@ -65,7 +74,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    //this.numberCounter.unsubscribe();
+    console.log('I am getting destroyed');
+    // this.numberCounter.unsubscribe();
     this.customObserver.unsubscribe();
   }
 
