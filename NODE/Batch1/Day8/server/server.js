@@ -6,10 +6,16 @@ const io = require('socket.io')(server);
 const port = 7725;  // process.env;
 const path = require('path');
 
-app.use('/',express.static(path.resolve(__dirname,'./../public')));
+// app.use('/',express.static(path.resolve(__dirname,'./../public')));
+
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname + './../public/index.html');
+// }) ;
+
+app.use('/',express.static(path.resolve(__dirname,'./../socket-client/public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + './../public/index.html');
+  res.sendFile(__dirname + './../socket-client/public/index.html');
 }) ;
 
 // socket
@@ -20,7 +26,7 @@ server.listen(port, () => {
 });
 
 io.on('connection', function (socket) {
-  console.log(socket);
+  // console.log(socket);
   socket.broadcast.emit('new user', 'A new user has connected');
   socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
