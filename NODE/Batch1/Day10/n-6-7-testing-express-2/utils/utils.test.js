@@ -31,23 +31,23 @@ it('should async square a number', (done) => {
 // should verify first and last names are set
 // assert it includes firstName and lastName with proper values
 it('should set firstName and lastName', () => {
-  var user = {location: 'Philadelphia', age: 25};
-  var res = utils.setName(user, 'Andrew Mead');
+  var user = {location: 'India', age: 25};
+  var res = utils.setName(user, 'Lalit Yadav');
 
   expect(res).toInclude({
-    firstName: 'Andrew',
-    lastName: 'Mead'
+    firstName: 'Lalit',
+    lastName: 'Yadav'
   });
 });
 
 // it('should expect some values', () => {
 //   // expect(12).toNotBe(12);
-//   // expect({name: 'andrew'}).toNotEqual({name: 'Andrew'});
+//   // expect({name: 'Lalit'}).toNotEqual({name: 'Lalit'});
 //   // expect([2,3,4]).toExclude(1);
 //   expect({
-//     name: 'Andrew',
+//     name: 'Lalit',
 //     age: 25,
-//     location: 'Philadelphia'
+//     location: 'India'
 //   }).toExclude({
 //     age: 23
 //   })

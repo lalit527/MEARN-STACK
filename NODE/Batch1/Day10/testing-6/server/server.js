@@ -24,5 +24,5 @@ app.get('/users', (req, res) => {
 // GET /users
 // Give users a name prop and age prop
 
-app.listen(3000);
+app.listen(7275);
 module.exports.app = app;

@@ -1,5 +1,5 @@
 const expect = require('expect');
-
+const assert = require('assert');
 const utils = require('./utils');
 
 it('should add two numbers', () => {
@@ -26,6 +26,23 @@ it('should async square a number', (done) => {
     expect(res).toBe(25).toBeA('number');
     done();
   });
+});
+
+it('should verify sum of two number within range', () => {
+  
+  return utils.verifyRange(5, 10).then((res) => {
+    debugger;
+    console.log(res);
+    expect(res).toBe(15);
+  });
+});
+
+
+it('should verify sum of two number within range', async () => {
+  
+  let res = await utils.verifyRange(5, 10);
+  expect(res).toBe(15);
+  
 });
 
 // should verify first and last names are set
