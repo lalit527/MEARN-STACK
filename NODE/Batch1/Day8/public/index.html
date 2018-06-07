@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    var socket = io();
+    socket.on('news', function (data) {
+      console.log(data);
+      socket.emit('my other event', { my: 'data' });
+    });
+    socket.on('new message', function (data) {
+      $('#messages').append($('<li>').text(data.data));
+    });
+    socket.on('new user', function (data) {
+      $('#messages').append($('<li>').text(data));
+    });
+    function sendData() {
+      socket.emit('new message', { data: $('#m').val() });
+    }
+    $('form').submit(function(e){
+      socket.emit('new message', $('#m').val());
+      $('#m').val('');
+      e.preventDefault();
+      return false;
+    });
+    
+
+  </script>
+</head>
+<body>
+  <ul id="messages"></ul>
+  <input id="m" autocomplete="off" /><button onclick="sendData()">Send</button>
+</body>
+</html>
