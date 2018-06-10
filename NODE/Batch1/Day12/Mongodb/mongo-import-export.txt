@@ -10,3 +10,13 @@ mongoexport -d test -c records --sort '{a: 1}' --limit 100 --skip 200 --out expo
 
 // csv format
 mongoexport --db users --collection contacts --type=csv --fields name,address --out /opt/backups/contacts.csv
+
+
+/***********Import****************/
+mongoimport --db users --collection contacts --file contacts.json
+
+mongoimport --host mongodb1.example.net --port 37017 --username user --password "pass" --collection contacts --db marketing --file /opt/backups/mdb1-examplenet.json
+
+mongoimport --db users --collection contacts --type csv --headerline --file /opt/backups/contacts.csv
+
+mongoimport --db users --collection contacts --type csv --file /example/data.csv --ignoreBlanks
