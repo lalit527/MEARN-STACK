@@ -1,0 +1,12 @@
+mongoexport --db test --collection traffic --out traffic.json
+
+// with replcaset and host name
+<replSetName>/<hostname1><:port>,<hostname2><:port>,<...>
+
+// running query while exporting
+mongoexport -d test -c records -q '{ a: { $gte: 3 } }' --out exportdir/myRecords.json
+
+mongoexport -d test -c records --sort '{a: 1}' --limit 100 --skip 200 --out export.2.json
+
+// csv format
+mongoexport --db users --collection contacts --type=csv --fields name,address --out /opt/backups/contacts.csv
