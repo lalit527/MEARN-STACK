@@ -1,0 +1,37 @@
+mongod --configsvr --dbpath /mongo-metadata --port 27019
+
+mongos --configdb config0.example.com:27019,config1.example.com:27019,config2.example.com:27019
+
+mongo --host query0.example.com --port 27017
+
+
+sh.addShard( "shard0.example.com:27017" )
+
+sh.addShard( "shard1.example.com:27017" )
+sh.addShard( "shard2.example.com:27017" )
+sh.addShard( "shard3.example.com:27017" )
+
+
+// adding replica set
+sh.addShard( "rep_set_name/rep_set_member:27017" )
+
+/**** Sharding********/
+sh.enableSharding("test_db")
+
+db.test_collection.ensureIndex( { _id : "hashed" } ))
+
+sh.shardCollection("test_db.test_collection", { "_id": "hashed" } )
+
+sh.status()
+
+
+///
+
+mongod –configdb ServerD: 27019
+mongos –configdb ServerD: 27019
+
+mongo –host ServerD –port 27017
+
+sh.addShard("ServerA:27017")
+
+sh.addShard("ServerB:27017")

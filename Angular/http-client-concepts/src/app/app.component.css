@@ -1,0 +1,16 @@
+.container {
+  margin-top: 50px;
+}
+
+input {
+  border: 1px solid blueviolet;
+  margin-left: 20px;
+  width: 50%;
+  margin-bottom: 20px;
+  height: 3rem;
+}
+
+.save-btn {
+  margin-bottom: 25px;
+  margin-left: 71px;
+}
