@@ -2,9 +2,8 @@
 //global scope
 var x = 2;
 //function scope
-function foo(){
+function foo() {
   var z = 1;
-
 }
 console.log(z);//error
 
@@ -18,7 +17,7 @@ console.log(z);//error
   console.log(x);//2
 
 
-//
+// pass by value
 var x =2;
 function foo(x) {
   x= 5;
@@ -26,6 +25,14 @@ function foo(x) {
 }
 console.log(x);
 
+// pass by ref
+var arr = [1,2, 3];
+function foo(arr) {
+  arr.push(5);
+  console.log(arr)
+}
+foo(arr)
+console.log(arr);
 
 //global scope
 var x = 2;
@@ -68,12 +75,12 @@ function foo() {
   function bar() {
     var x = 7;
     var y = 27;
-    console.log(x); //7
-    console.log(a); //4
+    console.log(x); 
+    console.log(a); 
   }
   bar();
-  console.log(x); //3
+  console.log(x); 
 }
-console.log(x); //2
+console.log(x); 
 foo();
 bar();
