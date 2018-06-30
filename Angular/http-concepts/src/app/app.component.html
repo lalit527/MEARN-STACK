@@ -22,7 +22,9 @@
     <div class="col-md-6">
       <ul class="list-group">
         <li class="list-group-item" 
-          *ngFor="let book of books">
+        (click)="getBookDetails(book.name)"
+          *ngFor="let book of books"
+          >
           {{book.name}} {{book.author}}
         </li>
       </ul>

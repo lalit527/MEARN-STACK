@@ -8,18 +8,25 @@ import { catchError, map, tap} from 'rxjs/operators';
 export class BookServerService {
 
   constructor(private http: HttpClient) { }
-
   getBooks() {
-    return this.http.get('https://ensemble-192705.firebaseio.com/books.json',
-      {
-        observe: 'body', // for full response observe: 'response'
-        responseType: 'json'
-      }
-    )
+    return this.http.get('https://ensemble-192705.firebaseio.com/books.json')
     .pipe(
       catchError(() => 'error')
     );
   }
+  // getBooks() {
+  //   return this.http.get('https://ensemble-192705.firebaseio.com/books.json',
+  //     {
+  //       observe: 'body', // for full response observe: 'response'
+  //       responseType: 'json'
+  //     }
+  //   )
+  //   .pipe(
+  //     catchError(() => 'error')
+  //   );
+  // }
+
+
 // {reportProgress: true})
   // saveBooks(books: any) {
   //   const options =  {
@@ -36,9 +43,12 @@ export class BookServerService {
     const options =  {
       headers: new HttpHeaders(
         {'Content-Type': 'application/json', 'x-auth': 'xyzzzz'}
-      )
+      ),
+      reportProgress: true
     }
-    const req = new HttpRequest('POST', "https://ensemble-192705.firebaseio.com/books.json", books, {reportProgress: true})
+  
+    const req = new HttpRequest('POST', "https://ensemble-192705.firebaseio.com/books.json"
+    , books, options)
     return this.http.request(req);
   }
   getSingleBook() {
