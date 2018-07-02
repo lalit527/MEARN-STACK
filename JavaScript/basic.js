@@ -1,4 +1,4 @@
-\//Strictly Typed Languages
+//Strictly Typed Languages
 // int x = 5;
 // string str = "Hello";
 // int x = 5;
@@ -9,7 +9,7 @@
 //We can give number, string, array or obect
 var x = 5;       //Number  5.6788
 var x = "Hello"; //String
-var x = {1,2 ,3}; //Object
+var x = {key1: 1, key2: 2 , key3: 3}; //Object
 var x = [1,2,3]; //Object
 var x = true;    //Boolean
 
@@ -22,7 +22,9 @@ var x;           //undefined
   x = undefined;
   x//undefined
 */
-var x = null;    //Object
+var x = 5;    //Object
+
+var x;
 
 typeof x
 
@@ -73,7 +75,7 @@ var arr = new Array(1, 2, 3);
 var arr = [1, "hello", function(){}];
 0, 1, 2
 arr[3] = undefined;
-arr[3] -- undefined
+arr[3] == undefined
 
 arr.length;
 arr[0], arr[1], arr[2]
@@ -134,7 +136,17 @@ else{
 
 }
 //value will be evaluated to boolean
+var a = 5;
+a = "Hello";
+var a = [1,2,3];
+0,1,2
+if(a[1] === 2 || a[4] == 5) {
+  console.log(a);
+}
 
+if(a[1] === 2 && a[4] == 5) {
+  console.log(a);
+}
 if(value1 && value2) {
 
 }
@@ -149,9 +161,31 @@ if(index < arr.length && arr[index] == 2){
 if(value1 || value2) {
 
 }
+var a = 1;
+//
+var a = 2;
+var b = a++; 
+var b = a;
+a = a + 1
+var c = ++a; 
+a = a + 1
+var c = a
+console.log(b); // 2
+console.log(c); // 4
+
 //will be true if any of the value is true
 //if value1 is true it will not evaluate value2
+
 var a = 2;
+if(1=1 || ++a==2) {
+  console.log(a);
+}
+
+var a = 2;
+if(1=1 && a++==2) {
+  console.log(a);
+}
+
 if(1=1 || ++a==2) {
   console.log(a);
 }
@@ -160,7 +194,7 @@ var arr = ['a', 'b', 'c'];
 for(var i=0; i<arr.length; ++i) {
   console.log(i);//index
 }
-var a = 1;
+var a = 4;
 while(a<4){
   ++a;
 }
@@ -176,6 +210,7 @@ while(a<4){
   a++;//
 }
 
+var a = [2, 3, 4, 5];
 for(var i in a){
   console.log(i); //index
 }

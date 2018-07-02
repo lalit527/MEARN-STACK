@@ -46,6 +46,25 @@ console.log(baz());
 console.log(a);
 var x  = 7;
 
+// Next program for execution
+var a = 2;
+function foo() {
+  return x;
+  var x = 7;
+}
+function bar() {
+  z = 70;
+  return x;
+}
+function baz() {
+  return z;
+}
+console.log(foo());
+console.log(bar());
+console.log(baz());
+console.log(a);
+var x  = 7;
+
 
 
 

@@ -37,7 +37,12 @@ var foo = function() {
 var foo = function NAMED() {
   console.log("Hi");
   NAMED();//works
-  //foo();//this will not work
+  // foo() 
+}
+
+
+var foo = function foo() {
+  console.log("Hi");
 }
 
 //foo() //Hi
@@ -56,3 +61,12 @@ foo(bar);
 foo(function() {
   console.log("World");
 })
+
+
+function foo() {
+  function bar() {
+    var a = 2;
+  }
+  console.log(a);
+  bar();
+}

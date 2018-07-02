@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { BookServerService } from './book.server.service';
 
 @Component({
@@ -6,11 +6,23 @@ import { BookServerService } from './book.server.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'app';
   constructor(private bookService: BookServerService) {}
-
+  // appName = '';
   books = [];
+
+  ngOnInit () {
+    // this.bookService.getAppName()
+    // .subscribe(
+    //   (data) => {
+    //     console.log(data);
+    //     this.appName = data;
+    //   }
+    // );
+  }
+
+  appName = this.bookService.getAppName();
 
   onSave(book:string, author:string) {
     let bookObj ={
@@ -22,6 +34,7 @@ export class AppComponent {
       .subscribe(
         (data) => {
           console.log(data);
+          this.books.push(bookObj);
           // TODO: Make call to getSingleBook and add data to this.books
         }
       );
@@ -39,5 +52,10 @@ export class AppComponent {
       );
   }
 
-  appName = this.bookService.getAppName();
+  getBookDetails(book: string) {
+    alert('Please Implement the Details function ' + book);
+  }
+
+  
+  
 }

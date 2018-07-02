@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BookServerService } from './book.server.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { ServerInterceptor } from './server.interceptor';
 
 
 @NgModule({
@@ -15,7 +17,10 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [BookServerService],
+  providers: [
+    BookServerService,
+    {provide: HTTP_INTERCEPTORS, useClass: ServerInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
