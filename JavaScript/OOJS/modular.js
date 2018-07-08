@@ -56,6 +56,12 @@ var foo = (function() {
 foo.bar();
 
 // Issue with return
+function foo() {
+  return
+  {
+    key: 'value1'
+  }
+}
 
 function foo() {
   return;
