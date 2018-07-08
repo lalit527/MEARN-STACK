@@ -73,7 +73,7 @@ function foo(){
   return a;
   var a = 2;
 }
-foo(5)
+foo( )
 foo()
 
 

@@ -23,3 +23,5 @@ var obj = {
     }
 }
 obj.foo()
+
+va
