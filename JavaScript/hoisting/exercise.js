@@ -63,6 +63,21 @@ function foo(a){
   return a;
   var a = 2;
 }
+foo(5)
+foo()
+
+// 
+var a = 1;
+function foo(){
+  c = 4;
+  return a;
+  var a = 2;
+}
+foo( )
+foo()
+
+
+// 
 
 function bar() {
   return c;
@@ -70,3 +85,12 @@ function bar() {
 }
 
 foo(a);
+
+function foo(param1){
+	console.log(arguments);
+	console.log(Array.prototype.slice.call(arguments))
+	console.log([].slice.call(arguments))
+	console.log(param1);
+}
+
+foo(1,2,3,4, 5);

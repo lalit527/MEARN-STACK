@@ -13,3 +13,15 @@
 4) If i create an object with 'new' keyword,
     this will refer to the newly created object
 */
+
+console.log(this); // window object
+
+var obj = {
+    key: 'value1',
+    foo: function() {
+        console.log(this); // Will refer to obj
+    }
+}
+obj.foo()
+
+va

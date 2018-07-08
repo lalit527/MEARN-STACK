@@ -10,4 +10,8 @@ Foo.prototype.speak = function() {
 }
 
 var a1 = new Foo("a1");
-a1.apeak();
+a1.speak();
+a1.identify = function() {
+  return "Hello World I am " + this.me;
+}
+a1.speak();

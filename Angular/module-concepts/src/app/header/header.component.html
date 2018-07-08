@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" routerLink="/profile" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Profile</a>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">Home</a>
+      </li>
+      <li class="nav-item" *ngIf="isLogged">
+        <a class="nav-link" routerLink="/tweet/show" routerLinkActive="active">Tweet</a>
+      </li>
+    </ul>
+    <button class="btn btn-primary my-2 my-sm-0" (click)="login()" *ngIf="!isLogged">Login</button>
+    <button class="btn btn-primary my-2 my-sm-0" (click)="logout()" *ngIf="isLogged">Logout</button>
+    <button class="btn btn-primary my-2 my-sm-0" (click)="signup()" *ngIf="!isLogged">Signup</button>
+  </div>
+</nav>
