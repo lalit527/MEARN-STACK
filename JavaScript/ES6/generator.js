@@ -8,9 +8,16 @@ function foo() {
     // some line below return
 }
 */
+
+// function* foo() {
+//     yield 1
+//     yield 2
+//     yield 3
+// }
+
 function* foo() {
     yield 1
-    yield 2
+    return 2
     yield 3
 }
 
