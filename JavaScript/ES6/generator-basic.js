@@ -6,7 +6,7 @@ function* foo() {
     
 }
 
-var itr = foo();
+var it = foo();
 console.log(it.next("a"));
 console.log(it.next("b"));
 console.log(it.next("c"));
@@ -23,14 +23,16 @@ function* foo2() {
 }
 
 var it = foo2();
-console.log(it.next());
-console.log(it.next());
-console.log(it.next());
-console.log(it.next());
-console.log(it.next());
+console.log("+++++++=========++++++++");
+console.log(it.next("a"));
+console.log(it.next("b"));
+console.log(it.next("c"));
+console.log(it.next("d"));
+console.log(it.next("e"));
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
+// console.log(it.next());
 
-// console.log(it.next("a"));
-// console.log(it.next("b"));
-// console.log(it.next("c"));
-// console.log(it.next("d"));
-// console.log(it.next("e"));
+

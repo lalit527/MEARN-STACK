@@ -82,3 +82,17 @@ console.log(foo()); // 2
 
     console.log(a); // 1
 }
+
+console.log(a);
+var a = 1;
+var a  = 2;
+
+console.log(a);
+let a = 1;
+let a = 2;
+
+var a = 1;
+var a  = 2;
+
+var a = 'Hello';
+var a  = function foo(){};

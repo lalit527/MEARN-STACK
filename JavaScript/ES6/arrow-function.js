@@ -6,6 +6,8 @@ function foo() {
 
 }
 
+
+
 var array = [1, 2, 3, 4, 5];
 newArray = array.map(function(value){
     return value + 2;
