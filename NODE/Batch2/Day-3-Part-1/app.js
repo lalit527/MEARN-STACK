@@ -22,4 +22,25 @@ if(args[0] === 'show') {
       console.log(result);
     });
   });
+} else if(args[0] === 'deleteall') {
+  todo.deleteData().then((result) => {
+    console.log(result);
+  }).catch((error) => {
+    console.log(error);
+  });
+} else if(args[0] === 'read') {
+  todo.readOne().then((result) => {
+    console.log(result);
+  }).catch((error) => {
+    console.log(error);
+  });
+} else if(args[0] === 'delete') {
+  todo.deleteOne(args[1]).then((data) => {
+    console.log(data);
+    todo.writeData(data).then((result) => {
+      console.log(result);
+    });
+  }).catch((error) => {
+    console.log(error);
+  });
 }
