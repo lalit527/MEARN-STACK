@@ -77,16 +77,10 @@ let _readOne = function() {
 let deleteOne = function(line) {
   let promise = new Promise((resolve, reject) => {
     _readOne().then((result) => {
+      result.splice(line - 1, 1);
       console.log(result);
-      resolve('done');
+      resolve(result.join('\n'));
     });
-    // fs.readFile('task.txt', (err, data) => {
-    //   if(err) {
-    //     console.log(err);
-    //     reject(err);
-    //   }
-    //   resolve(data.toString().split('\n').slice(line, 1).join('\n'));
-    // })
   });
   return promise;
 }

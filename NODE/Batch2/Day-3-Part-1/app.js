@@ -6,6 +6,8 @@ const {
 
 let args = process.argv.slice(2);
 
+console.log(process.argv);
+
 if(args[0] === 'show') {
   todo.readData().then((data) => {
     console.log(data);
