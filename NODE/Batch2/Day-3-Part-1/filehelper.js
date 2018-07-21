@@ -56,15 +56,37 @@ let readOne = function() {
   return promise;
 }
 
+let _readOne = function() {
+  const rl = readline.createInterface({
+      input: fs.createReadStream('task.txt')
+  });
+  let promise = new Promise((resolve, reject) => {
+    let result = [];
+    rl.on('line', function (line) {
+        console.log('Line from file:', line);
+        // result.append(line);
+        result.push(line);
+    });
+    rl.on('close', () => {
+      resolve(result);
+    })
+  });
+  return promise;
+}
+
 let deleteOne = function(line) {
   let promise = new Promise((resolve, reject) => {
-    fs.readFile('task.txt', (err, data) => {
-      if(err) {
-        console.log(err);
-        reject(err);
-      }
-      resolve(data.toString().split('\n').slice(line, 1).join('\n'));
-    })
+    _readOne().then((result) => {
+      console.log(result);
+      resolve('done');
+    });
+    // fs.readFile('task.txt', (err, data) => {
+    //   if(err) {
+    //     console.log(err);
+    //     reject(err);
+    //   }
+    //   resolve(data.toString().split('\n').slice(line, 1).join('\n'));
+    // })
   });
   return promise;
 }
