@@ -4,11 +4,11 @@ const controller = require('./controllers');
 
 module.exports.routeController = function(app) {
   console.log('router');
-  routes.get('/all', (req, res) => {
-    controller.user.userAll(req, res);
+  routes.get('/save', (req, res) => {
+    controller.user.save(req, res);
   });
-  routes.get('/one', (req, res) => {
-    controller.user.userOne(req, res);
+  routes.get('/all', (req, res) => {
+    controller.user.findAll(req, res);
   });
 
   app.use('/blogpost/v1', routes);

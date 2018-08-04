@@ -2,9 +2,9 @@
 // const app = express();
 const app = require('express')();
 const mongoose = require('mongoose');
-const Schema = require('./app/models/schema.model');
+const Schema = require('./app/schema.model');
 const dbpath = "mongodb://localhost:27017/batch2";
-const router = require('./app/controllers/router.controller');
+const router = require('./app/router.controller');
 
 const mongo = mongoose.connect(dbpath, {useNewUrlParser: true });
 mongo.then(() => {
