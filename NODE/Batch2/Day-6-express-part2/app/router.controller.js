@@ -10,6 +10,9 @@ module.exports.routeController = function(app) {
   routes.get('/all', (req, res) => {
     controller.user.findAll(req, res);
   });
+  routes.get('/user/:userid', (req, res) => {
+    controller.user.findUser(req, res);
+  });
 
   app.use('/blogpost/v1', routes);
 };

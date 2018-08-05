@@ -32,7 +32,20 @@ const findAll = (req, res) => {
   })
 }
 
+const findUser = (req, res) => {
+  let userId = req.params['userid'];
+  userModel.find({'_id': userId}, (err, result) => {
+    if(err) {
+      res.send({data: err});
+      return;
+    }
+    console.log(result);
+    res.send({data: result});
+  })
+}
+
 module.exports = {
   save,
-  findAll
+  findAll,
+  findUser
 }
