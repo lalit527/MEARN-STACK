@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userModel = mongoose.model('User');
+const user = require('./user.model');
 
 const save = (req, res) => {
   console.log(req.body);
-  const user = new userModel({
+  let user = new userModel({
     firstName: req.body.fname,
     lastName: req.body.lname,
     email: req.body.email,

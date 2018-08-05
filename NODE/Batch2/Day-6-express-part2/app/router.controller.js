@@ -1,13 +1,16 @@
 const express = require('express');
-const routes = express.Router();
+
 const controller = require('./controllers');
+const authenticate = require('./../middlewares/auth');
+
+const routes = express.Router();
 
 module.exports.routeController = function(app) {
   console.log('router');
   routes.post('/save', (req, res) => {
     controller.user.save(req, res);
   });
-  routes.get('/all', (req, res) => {
+  routes.get('/all', authenticate.validate, (req, res) => {
     controller.user.findAll(req, res);
   });
   routes.get('/user/:userid', (req, res) => {
