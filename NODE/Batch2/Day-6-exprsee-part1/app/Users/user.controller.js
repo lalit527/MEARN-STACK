@@ -34,33 +34,7 @@ const findAll = (req, res) => {
 
 const findUser = (req, res) => {
   let userId = req.params['userid'];
-  userModel.findOne({'_id': userId}, (err, result) => {
-    if(err) {
-      res.send({data: err});
-      return;
-    }
-    console.log(result);
-    res.send({data: result});
-  })
-}
-const updateUser = (req, res) => {
-  let userId = req.params['userid'];
-  let obj = {
-    mobile: req.body.mobile,
-    password: req.body.password
-  };
-  userModel.findOneAndUpdate({'_id': userId}, {$set: obj}, (err, result) => {
-    if(err) {
-      res.send({data: err});
-      return;
-    }
-    console.log(result);
-    res.send({data: result});
-  })
-}
-const deleteUser = (req, res) => {
-  let userId = req.params['userid'];
-  userModel.findOneAndRemove({'_id': userId}, (err, result) => {
+  userModel.find({'_id': userId}, (err, result) => {
     if(err) {
       res.send({data: err});
       return;
@@ -73,7 +47,5 @@ const deleteUser = (req, res) => {
 module.exports = {
   save,
   findAll,
-  findUser,
-  updateUser,
-  deleteUser
+  findUser
 }
