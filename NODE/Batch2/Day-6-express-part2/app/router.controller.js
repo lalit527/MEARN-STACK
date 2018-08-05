@@ -4,7 +4,7 @@ const controller = require('./controllers');
 
 module.exports.routeController = function(app) {
   console.log('router');
-  routes.get('/save', (req, res) => {
+  routes.post('/save', (req, res) => {
     controller.user.save(req, res);
   });
   routes.get('/all', (req, res) => {

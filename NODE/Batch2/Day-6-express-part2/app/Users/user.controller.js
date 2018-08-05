@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const userModel = mongoose.model('User');
 
 const save = (req, res) => {
-  // res.send({data: 'all'});
+  console.log(req.body);
   const user = new userModel({
-    firstName: 'Sample',
-    lastName: 'Lanme',
-    email: 'sample@gmail.co',
-    mobile: 1234,
-    password: 'test1234'
+    firstName: req.body.fname,
+    lastName: req.body.lname,
+    email: req.body.email,
+    mobile: req.body.mobile,
+    password: req.body.password
   });
   user.save((err, result) => {
     if(err) {
@@ -17,7 +17,7 @@ const save = (req, res) => {
       return;
     }
     console.log(result);
-    res.send({data: 'all'});
+    res.send({data: result});
   });
 }
 const findAll = (req, res) => {
