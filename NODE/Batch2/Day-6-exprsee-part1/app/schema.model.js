@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
   firstName: { type: String, required: true },
@@ -17,11 +16,10 @@ const blogSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
+mongoose.model('Blog', blogSchema);
+mongoose.model('User', userSchema);
+
 module.exports = {
   userSchema,
   blogSchema
 }
-
-mongoose.model('Blog', blogSchema);
-mongoose.model('User', userSchema);
-
