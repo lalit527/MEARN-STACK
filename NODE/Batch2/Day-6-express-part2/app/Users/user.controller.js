@@ -49,6 +49,7 @@ const updateUser = (req, res) => {
     mobile: req.body.mobile,
     password: req.body.password
   };
+  _cleanUp(obj);
   userModel.findOneAndUpdate({'_id': userId}, {$set: obj}, (err, result) => {
     if(err) {
       res.send({data: err});
@@ -68,6 +69,14 @@ const deleteUser = (req, res) => {
     console.log(result);
     res.send({data: result});
   })
+}
+
+const _cleanUp = (obj) => {
+  for(let prop in obj) {
+    if(obj[prop] === null || obj[prop] === undefined || obj[prop] === '') {
+      delete obj[prop];
+    }
+  }
 }
 
 module.exports = {
