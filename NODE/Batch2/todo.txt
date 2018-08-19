@@ -1,0 +1,14 @@
+Topics to cover:-
+
+Mongoose Middleware
+Authentication Token
+Session and Cookie
+
+Pug Templating
+Testing
+
+SocketIO
+Passport
+
+Advance Node
+Advance Mongo
