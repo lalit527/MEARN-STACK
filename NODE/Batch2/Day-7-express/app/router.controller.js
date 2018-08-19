@@ -26,5 +26,9 @@ module.exports.routeController = function(app) {
     controller.user.loginUser(req, res);
   });
 
+  routes.post('/blog/create', authenticate.validate, (req, res) => {
+    controller.blog.createBlog(req, res);
+  })
+
   app.use('/blogpost/v1', routes);
 };

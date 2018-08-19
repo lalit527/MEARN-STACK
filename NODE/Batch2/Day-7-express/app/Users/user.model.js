@@ -40,25 +40,20 @@ userSchema.methods.generateAuthToken = function() {
   return user.save().then((success) => token);
 }
 
-userSchema.statics.createUser = function(data) {
-  const user = this;
-  let newUser = new user(data);
-  return new Promise((resolve, reject) => {
-    newUser.save((err, result) => {
-      if(err) {
-        reject('some error'+err);
-      } else {
-        let value = result.generateAuthToken().then((token) => {
-          console.log('A value', token);
-          resolve({
-            result: result,
-            token: token
-          });
-        })
-       
-      }
-    });
-  });
+userSchema.statics.findByToken = function(token) {
+	var user = this;
+	var decoded;
+	try{
+        decoded = jwt.verify(token, jwtKey.getToken());
+	}catch(e){
+         return Promise.reject(e);
+	}
+
+	return user.findOne({
+		'_id': decoded._id,
+		'tokens.token': token,
+		'tokens.access': 'auth'
+	});
 }
 
 // console.log(userSchema);
