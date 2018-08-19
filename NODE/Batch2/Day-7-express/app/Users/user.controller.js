@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userModel = mongoose.model('User');
-const user = require('./user.model');
 
 const save = (req, res) => {
   console.log(req.body);
@@ -18,8 +17,22 @@ const save = (req, res) => {
       return;
     }
     console.log(result);
-    res.send({data: result});
+    user.generateAuthToken().then((token)=> {
+      res.set({
+        'Content-Type': 'text/plain',
+        'Content-Length': '123',
+        'ETag': '12345',
+        'Access-Control-Allow-Origin': '*',
+        'x-auth': token
+      }).send(result);
+    });
   });
+  // user.createUser()
+  // console.log(user.bar);
+  // console.log(user.foo);
+  // console.log(userModel.bar);
+  // console.log(userModel.foo);
+  // res.send({data: 'data'});
 }
 const findAll = (req, res) => {
   // res.send({data: 'all'});
@@ -72,6 +85,10 @@ const deleteUser = (req, res) => {
   })
 }
 
+const loginUser = (req, res) => {
+  
+}
+
 const _cleanUp = (obj) => {
   for(let prop in obj) {
     if(obj[prop] === null || obj[prop] === undefined || obj[prop] === '') {
@@ -79,6 +96,7 @@ const _cleanUp = (obj) => {
     }
   }
 }
+
 
 module.exports = {
   save,

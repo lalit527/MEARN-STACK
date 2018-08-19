@@ -1,8 +1,8 @@
-const user = require('./Users/user.model');
-const blog = require('./Blogs/blog.model');
+// console.log('ABC');
+const userSchema = require('./Users/user.model').userSchema;
+const blogSchema = require('./Blogs/blog.model').blogSchema;
+const mongoose = require('mongoose');
 
-
-module.exports = {
-  user,
-  blog
-}
+// console.log(2, userSchema);
+mongoose.model('Blog', blogSchema);
+mongoose.model('User', userSchema);

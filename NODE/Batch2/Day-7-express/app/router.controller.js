@@ -22,6 +22,9 @@ module.exports.routeController = function(app) {
   routes.delete('/user/delete/:userid', (req, res) => {
     controller.user.deleteUser(req, res);
   });
+  routes.delete('/user/login', (req, res) => {
+    controller.user.loginUser(req, res);
+  });
 
   app.use('/blogpost/v1', routes);
 };

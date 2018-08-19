@@ -2,7 +2,7 @@
 // const app = express();
 const app = require('express')();
 const mongoose = require('mongoose');
-const Schema = require('./app/schema.model');
+const Schema = require('./app/models');
 const dbpath = "mongodb://localhost:27017/batch2";
 const router = require('./app/router.controller');
 const bodyParser = require('body-parser');

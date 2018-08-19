@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
   firstName: { type: String, required: true },
@@ -27,11 +26,29 @@ const blogSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
+
+// userSchema.methods.foo = function() {
+//   console.log('foo');
+// }
+
+// userSchema.statics.bar = function() {
+//   console.log('bar');
+// }
+
+// module.exports.userSchema = userSchema;
+
+// module.exports.blogSchema = blogSchema;
+
 module.exports = {
   userSchema,
   blogSchema
 }
 
-mongoose.model('Blog', blogSchema);
-mongoose.model('User', userSchema);
+// module.exports.foo = function() {
+//   console.log(userSchema.statics);
+//   return userSchema.methods;
+// }
+
+// mongoose.model('Blog', blogSchema);
+// mongoose.model('User', userSchema);
 
