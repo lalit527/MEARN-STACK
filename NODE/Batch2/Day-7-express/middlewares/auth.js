@@ -1,4 +1,5 @@
 const userLib = require('./../lib/user.lib');
+const blogLib = require('./../lib/blog.lib');
 
 const validate = (req, res, next) => {
   const token = req.header('x-auth-token');
@@ -13,6 +14,18 @@ const validate = (req, res, next) => {
     req.user = user;
     next();
   })
+}
+
+const validateOwner = (req, res, next) => {
+    userId = req.user._id;
+    blogId = req.params['id'];
+    blogLib.validateOwner(userId, blogId, (err, result) => {
+      if(err) {
+        res.send({'data': err});
+        return;
+      }
+      next();
+    });
 }
 
 module.exports = {

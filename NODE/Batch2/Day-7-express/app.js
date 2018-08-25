@@ -6,6 +6,7 @@ const Schema = require('./app/models');
 const dbpath = "mongodb://localhost:27017/batch2";
 const router = require('./app/router.controller');
 const bodyParser = require('body-parser');
+const logger = require('morgan');
 
 
 const mongo = mongoose.connect(dbpath, {useNewUrlParser: true });
@@ -17,7 +18,7 @@ mongo.then(() => {
 
 app.use(bodyParser.json({limit:'10mb',extended:true}));
 app.use(bodyParser.urlencoded({limit:'10mb',extended:true}));
-
+app.use(logger('dev'));
 
 router.routeController(app);
 console.log('app');
