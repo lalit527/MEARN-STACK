@@ -5,7 +5,7 @@ const routes = express.Router();
 const userModel = mongoose.model('User');
 
 module.exports.userController = function(app) {
-  routes.get('/all', auth.checkLogin, (req, res) => {
+  routes.get('/all', (req, res) => {
     userModel.find({}, (err, result) => {
       if(err){
         return res.send('No record found'+err);

@@ -13,6 +13,16 @@ module.exports.tweetController = function(app) {
       return res.send(result);
     })
   });
+
+  routes.get('/mytweets', (req, res) => {
+    tweetModel.find({}, (err, result) => {
+      if(err) {
+        return res.send('Some error occured');
+      } 
+      return res.send(result);
+    })
+  });
+
   routes.get('/tweet/:id', (req, res) => {
     let id = req.params['id'];
     tweetModel.findOne({'_id': id}, (err, result) => {
@@ -62,6 +72,13 @@ module.exports.tweetController = function(app) {
     })
   });
 
+
+
+  routes.get('/add', (req, res) => {
+    res.render('tweet');
+  });
+  
+
   routes.post('/add', (req, res) => {
     let name = req.body.name;
     let userId = req.body.userId;
@@ -71,14 +88,15 @@ module.exports.tweetController = function(app) {
     }
     let message = req.body.message;
     let tweet = new tweetModel({
-      user: userObj,
+      // user: userObj,
       message: message
     });
     tweet.save((err, result) =>{
       if(err) {
-        return res.send('Some error occured');
+
+        return res.send({data: err});
       }
-      res.send(result);
+      res.redirect('/tweet/v1/all');
     })
   });
   app.use('/tweet/v1', routes);
