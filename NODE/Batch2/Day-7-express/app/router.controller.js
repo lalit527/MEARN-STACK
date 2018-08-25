@@ -30,7 +30,7 @@ module.exports.routeController = function(app) {
     controller.blog.createBlog(req, res);
   });
 
-  routes.delete('/blog/delete/:id', authenticate.validate, (req, res) => {
+  routes.delete1('/blog/delete/:id', authenticate.validate, (req, res) => {
     controller.blog.deleteBlog(req, res);
   });
 
