@@ -3,7 +3,6 @@ Topics to cover:-
 Session and Cookie 
 Fileupload and Express Middleware
 
-Pug Templating
 Testing
 
 SocketIO
