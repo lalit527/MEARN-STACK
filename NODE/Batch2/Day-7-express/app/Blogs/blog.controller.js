@@ -20,6 +20,18 @@ const createBlog = (req, res) => {
   });
 }
 
+let deleteBlog = function(req, res) {
+  let id = req.params['id'];
+  blogModel.findOneAndRemove({'_id': id}, (err, result) => {
+    if (err) {
+      res.send({data: err});
+      return;
+    }
+    res.send({data: result});
+  })
+}
+
 module.exports = {
-  createBlog
+  createBlog,
+  deleteBlog
 }
