@@ -1,7 +1,5 @@
 Topics to cover:-
 
-Mongoose Middleware
-Authentication Token
 Session and Cookie
 Fileupload and 
 
