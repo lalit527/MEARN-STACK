@@ -1,14 +1,15 @@
 Topics to cover:-
 
-Mongoose Middleware
-Authentication Token
-Session and Cookie
+1-SEP -> SocketIO
+2-SEP -> Passport and Fileupload and Express Middleware
 
-Pug Templating
-Testing
+8-SEP -> Testing
+9-SEP -> Integration With Angular
 
-SocketIO
-Passport
+15-SEP -> Advance Node
+16-SEP -> Advance Mongo
 
-Advance Node
-Advance Mongo
+
+s%3AIODV5SkwJ-A0kLLjH-P7KHSaP5sXFDl1.BFCOd6MxdfAkyxb7fXF%2B2UeV9pLlKMJ75b0VmsDT4XA
+
+s%3AiDvTFuSYL5610smts-pHWLwtAuzYyLI6.dmc80m7sY5K0p0OhrNXmTcP%2BB4J2dplj6mKcZH%2Fg0hA

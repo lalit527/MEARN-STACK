@@ -28,7 +28,11 @@ module.exports.routeController = function(app) {
 
   routes.post('/blog/create', authenticate.validate, (req, res) => {
     controller.blog.createBlog(req, res);
-  })
+  });
+
+  routes.delete('/blog/delete/:id', authenticate.validate, (req, res) => {
+    controller.blog.deleteBlog(req, res);
+  });
 
   app.use('/blogpost/v1', routes);
 };
