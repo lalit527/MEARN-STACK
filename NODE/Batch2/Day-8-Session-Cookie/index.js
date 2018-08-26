@@ -27,7 +27,7 @@ app.use(session({
 	saveUninitialize: true,
 	cookie: {secure: false}
 }));
-// app.use(auth.setLoogedInUser);
+app.use(auth.setLoogedInUser);
 
 const dbpath = "mongodb://localhost/sample"
 mongoose.connect(dbpath, () => {

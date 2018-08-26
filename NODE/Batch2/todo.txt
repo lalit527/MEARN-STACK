@@ -1,12 +1,12 @@
 Topics to cover:-
 
-Session and Cookie 
-Fileupload and Express Middleware
+27-AUG -> Session and Cookie 
 
-Testing
+1-SEP -> SocketIO
+2-SEP -> Passport and Fileupload and Express Middleware
 
-SocketIO
-Passport
+8-SEP -> Testing
+9-SEP -> Integration With Angular
 
-Advance Node
-Advance Mongo
+15-SEP -> Advance Node
+16-SEP -> Advance Mongo

@@ -5,7 +5,7 @@ const routes = express.Router();
 const userModel = mongoose.model('User');
 
 module.exports.userController = function(app) {
-  routes.get('/all', (req, res) => {
+  routes.get('/all', auth.checkLogin, (req, res) => {
     userModel.find({}, (err, result) => {
       if(err){
         return res.send('No record found'+err);
@@ -101,6 +101,7 @@ module.exports.userController = function(app) {
       if(err) {
         return res.send('some error'+err);
       }
+      req.session.user = result;
       res.redirect('/tweet/v1/all');
     });
   });
@@ -111,11 +112,17 @@ module.exports.userController = function(app) {
     userModel.findByCredential(email, password)
           .then((result) => {
             req.session.user = result;
-            res.send('success');
+            res.redirect('/tweet/v1/all');
           })
           .catch((error) => {
-            res.send(err);
+            res.require('/login');
           });
+  });
+
+
+  routes.get('/logout', auth.checkLogin, (req, res) => {
+      res.clearCookie('ensembleCookie');
+      res.redirect('/login'); 
   });
 
   app.use('/user', routes);

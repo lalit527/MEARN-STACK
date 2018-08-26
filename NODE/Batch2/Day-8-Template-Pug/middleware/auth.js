@@ -14,7 +14,7 @@ module.exports.setLoginUser = function(req, res, next) {
 
 
 module.exports.checkLogin = function(req,res,next){
-	if(!req.user && !req.session.user){
+	if(!req.session.user){
 		res.redirect('/user/login/');
 	}
 	else{
