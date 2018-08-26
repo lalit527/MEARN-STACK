@@ -5,7 +5,7 @@ const routes = express.Router();
 const tweetModel = mongoose.model('Tweet');
 
 module.exports.tweetController = function(app) {
-  routes.get('/all', (req, res) => {
+  routes.get('/all', auth.checkLogin, (req, res) => {
     tweetModel.find({}, (err, result) => {
       if(err) {
         return res.send('Some error occured');

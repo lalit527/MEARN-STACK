@@ -108,10 +108,12 @@ module.exports.userController = function(app) {
 
   routes.post('/login', (req, res) => {
     let email = req.body.email;
-    let password = req.body.pwd;
+    let password = req.body.password;
     userModel.findByCredential(email, password)
           .then((result) => {
             req.session.user = result;
+            console.log(result);
+            console.log(req.session);
             res.redirect('/tweet/v1/all');
           })
           .catch((error) => {

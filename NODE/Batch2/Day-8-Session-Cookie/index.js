@@ -27,7 +27,7 @@ app.use(session({
 	saveUninitialize: true,
 	cookie: {secure: false}
 }));
-app.use(auth.setLoogedInUser);
+app.use(auth.checkSession);
 
 const dbpath = "mongodb://localhost/sample"
 mongoose.connect(dbpath, () => {
@@ -43,7 +43,7 @@ tweetController.tweetController(app);
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
-app.use(auth.setLoginUser);
+
 app.listen('3002', () => {
   console.log('Server started on port 3002');
 })

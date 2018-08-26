@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var userModel = mongoose.model('User');
 
-module.exports.checkSessionr = function(req, res, next) {
-  if (req.cookie.ensembleCookie && !req.session.user){
+module.exports.checkSession = function(req, res, next) {
+  if (req.cookie && req.cookie.ensembleCookie && !req.session.user){
     res.clearCookie('ensembleCookie');
   } 
   next()
@@ -10,7 +10,12 @@ module.exports.checkSessionr = function(req, res, next) {
 
 
 module.exports.checkLogin = function(req,res,next){
-	if(req.session.user && req.cookie.ensembleCookie){
+  console.log(req.cookie);
+  console.log("++=+===========+++++");
+  console.log(req.session);
+  // && req.cookie && req.cookie.ensembleCookie
+	if(req.session ){
+    
 		next()
 	}
 	else{
