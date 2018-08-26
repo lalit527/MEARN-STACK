@@ -112,8 +112,6 @@ module.exports.userController = function(app) {
     userModel.findByCredential(email, password)
           .then((result) => {
             req.session.user = result;
-            console.log(result);
-            console.log(req.session);
             res.redirect('/tweet/v1/all');
           })
           .catch((error) => {
