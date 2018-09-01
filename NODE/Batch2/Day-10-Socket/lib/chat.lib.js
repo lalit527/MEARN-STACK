@@ -18,7 +18,7 @@ const socketFunc = (io) => {
       onlineUsers.push(user);
       socket.user = user;
       socket.room = global;
-      socket.broadcast.to(global).emit('chat message', socket.user+" came online");
+      socket.broadcast.to(global).emit('send status', socket.user+" came online");
       eventEmitter.emit('update online users', onlineUsers);
     });   
 
@@ -60,7 +60,7 @@ const socketFunc = (io) => {
       if (socket.user) {
         let index = onlineUsers.indexOf(socket.user);
         onlineUsers.splice(index, 1);
-        socket.broadcast.emit('chat message', socket.user+" left the chat");
+        socket.broadcast.emit('send status', socket.user+" left the chat");
         eventEmitter.emit('update online users', onlineUsers);
       }
     });
