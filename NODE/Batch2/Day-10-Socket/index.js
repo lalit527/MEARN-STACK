@@ -4,23 +4,20 @@ const http = require('http');
 const server = http.Server(app);
 const port = 7002;
 const io = require('socket.io')(server);
+const chatLib = require('./lib/chat.lib');
+const newsLib = require('./lib/news.lib');
 
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/public/index.html');
+app.get('/chat', function(req, res){
+  res.sendFile(__dirname + '/public/chat.html');
 });
 
-io.on('connection', function (socket){
-  console.log('a user connected');
+app.get('/news', function(req, res){
+  res.sendFile(__dirname + '/public/news.html');
+});
 
-  socket.on('chat message', function(msg) {
-    io.emit('chat message', msg);
-  });
-
-  socket.on('disconnect', function() {
-    console.log('User Disconnected');
-  });
-}); 
+chatLib.socketFunc(io);
+newsLib.socketFunc(io);
 
 server.listen(port, () => {
   console.log(`Server started on port ${port}`)
