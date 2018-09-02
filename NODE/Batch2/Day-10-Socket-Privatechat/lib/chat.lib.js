@@ -9,17 +9,6 @@ const socketFunc = (io) => {
     chat.emit('online users', onlineUsers);
   });
 
-  eventEmitter.on('save chat', function(msg, group, user) {
-    // Save to database
-  });
-
-  eventEmitter.on('load old Chat', function(msg, group, user) {
-    // Get from database
-    // 
-  });
-
-
-
   chat.on('connection', function (socket){
     console.log('a user connected');
     socket.on('user', function(user) {
@@ -31,12 +20,10 @@ const socketFunc = (io) => {
       socket.room = global;
       socket.broadcast.to(global).emit('send status', socket.user+" came online");
       eventEmitter.emit('update online users', onlineUsers);
-      eventEmitter.emit('load old chat', socket.room);
     });   
 
     socket.on('chat message', function(msg) {
       chat.to(socket.room).emit('chat message', msg, socket.user);
-      eventEmitter.emit('save chat', msg, socket.room, socket.user);
     });
 
     socket.on('typing', function(data) {
@@ -66,10 +53,6 @@ const socketFunc = (io) => {
       socket.room = room;
       socket.join(socket.room);
       
-    });
-
-    socket.on('load old Chat', function() {
-
     });
 
     socket.on('disconnect', function() {
