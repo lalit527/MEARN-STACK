@@ -1,12 +1,29 @@
 const express = require('express');
-
+const passport = require('passport');
 const controller = require('./controllers');
 const authenticate = require('./../middlewares/auth');
 
 const routes = express.Router();
 
+const passportAuth = require('./../config/passport');
+
 module.exports.routeController = function(app) {
   console.log('router');
+  passportAuth(passport);
+  app.use(passport.initialize());
+  app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+  app.get('/auth/google/callback',
+    passport.authenticate('google', {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+    })
+  );
+
+  app.get('/profile', (req, res) => {
+    res.send({data: req.user});
+  });
+
   routes.post('/save', (req, res) => {
     controller.user.save(req, res);
   });
