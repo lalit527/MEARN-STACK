@@ -1,7 +1,5 @@
 Topics to cover:-
 
-1-SEP -> SocketIO
-2-SEP -> Passport and Fileupload and Express Middleware
 
 8-SEP -> Testing
 9-SEP -> Integration With Angular
