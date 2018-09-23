@@ -70,3 +70,26 @@ db.users.replaceOne({age: 77}, {manager: 'Foo'})
 
 # replaces the matching object with new object, if match is not present will create a new object
 db.users.replaceOne({age: 77}, {manager: 'Foo'}, {upsert: true})
+
+
+db.users.save({name:'Foo7', manager: 'Foo', salaray: 50000})
+
+# will upsert this record
+db.users.save({"_id" : '5ba73c1419c378abae2f7b8e', name:'Foo7', manager: 'Foo', salaray: 50000, age: 35})
+
+db.users.save({"_id" : new ObjectId(), name:'Foo7', manager: 'Foo', salaray: 50000, age: 35})
+
+# delete
+db.users.deleteOne(
+  {age: {$lte: 20}}
+)
+
+db.users.deleteMany(
+  {age: {$lte: 20}}
+)
+
+# show only name field
+db.users.find( { name: "Foo" }, { name: 1 } )
+
+# shows all field except name
+db.users.find( { manager: "Foo" }, { name: 0 } )
