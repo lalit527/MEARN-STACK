@@ -14,6 +14,8 @@ use {db_name}
 
 db.createCollection('users')
 show collections
+# drops collections orders
+db.orders.drop()
 
 ##
 var myDateString = Date();
