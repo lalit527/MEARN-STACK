@@ -1,0 +1,95 @@
+db.users.insertOne({name: 'Jon', age: 24})
+
+db.users.find();
+
+db.users.insertOne({name: 'Doe'})
+
+
+db.users.insertMany([
+  {name: 'Foo', age: 52}
+])
+
+db.users.insertMany([
+  {name: 'Foo', age: 52},
+  {name: 'Bar', age: 55}
+])
+
+db.users.insertMany([
+  {name: 'Foo1', age: 52},
+  {name: 'Bar1', age: 10},
+  {name: 'Foo2', age: 20},
+  {name: 'Bar2', age: 22}
+])
+
+db.copyDatabase('batch2', 'temp')
+
+# Finding record
+db.users.find() -> Find all the records in the collections
+db.users.find({name: "Foo"}) -> Find the record in the collection where name is Foo
+db.users.find().limit(1)
+
+# records greter than
+db.users.find(
+  {age: {$gt: 20}}
+)
+
+# recods greater and equal to
+db.users.find(
+  {age: {$gt: 20}}
+)
+
+# records greter than
+db.users.find(
+  {age: {$limit: 20}}
+)
+
+# recods greater and equal to
+db.users.find(
+  {age: {$lte: 20}}
+)
+
+# updating a single record
+db.users.updateOne({name: "Foo1"}, {$set: {age: 24}})
+
+# Update or insert
+db.users.updateOne({name: "Foo5"}, {$set: {age: 24}}, {upsert: true})
+
+# updates the first matching record
+db.users.updateOne({age: 24}, {$set: {salary: 5000}}, {upsert: true})
+
+# updates all the matching record
+db.users.updateOne({age: 24}, {$set: {salary: 5000}}, {upsert: true})
+
+# If filter doen't match it will create a new record with age and salary, name will not be present
+db.users.updateOne({age: 77}, {$set: {salary: 5000}}, {upsert: true})
+
+db.collection.replaceOne({age: 77}, {manager: 'Foo'})
+
+# replaces the matching object with new object
+db.users.replaceOne({age: 77}, {manager: 'Foo'})
+
+# replaces the matching object with new object, if match is not present will create a new object
+db.users.replaceOne({age: 77}, {manager: 'Foo'}, {upsert: true})
+
+
+db.users.save({name:'Foo7', manager: 'Foo', salaray: 50000})
+
+# will upsert this record
+db.users.save({"_id" : '5ba73c1419c378abae2f7b8e', name:'Foo7', manager: 'Foo', salaray: 50000, age: 35})
+
+db.users.save({"_id" : new ObjectId(), name:'Foo7', manager: 'Foo', salaray: 50000, age: 35})
+
+# delete
+db.users.deleteOne(
+  {age: {$lte: 20}}
+)
+
+db.users.deleteMany(
+  {age: {$lte: 20}}
+)
+
+# show only name field
+db.users.find( { name: "Foo" }, { name: 1 } )
+
+# shows all field except name
+db.users.find( { manager: "Foo" }, { name: 0 } )

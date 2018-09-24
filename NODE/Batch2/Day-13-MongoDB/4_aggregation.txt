@@ -1,0 +1,13 @@
+# Total num of records
+db.users.count()
+
+# Total distinct values
+db.users.distinct('name')
+
+# aggregate
+db.users.aggregate(
+  [
+    { $match: {age: {$gte: 20}} },
+    { $group: {_id: "$_id", total: {$sum: "$salary"}}}
+  ]
+)

@@ -1,0 +1,23 @@
+db -> current database
+
+use {db_name} ->  create and swith to this database
+                  if db is present it will switch to the existing db
+
+show dbs -> Will list all the databases
+
+use {db_name}
+
+db.dropDatabase() -> will drop {db_name}
+
+
+use {db_name}
+
+db.createCollection('users')
+show collections
+# drops collections orders
+db.orders.drop()
+
+##
+var myDateString = Date();
+
+typeof myDateString -> string

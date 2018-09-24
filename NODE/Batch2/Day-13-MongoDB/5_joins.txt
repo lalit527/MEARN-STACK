@@ -1,0 +1,87 @@
+db.orders.insert([
+   { "_id" : 1, "item" : "almonds", "price" : 12, "quantity" : 2 },
+   { "_id" : 2, "item" : "pecans", "price" : 20, "quantity" : 1 },
+   { "_id" : 3  }
+])
+
+db.inventory.insert([
+   { "_id" : 1, "sku" : "almonds", description: "product 1", "instock" : 120 },
+   { "_id" : 2, "sku" : "bread", description: "product 2", "instock" : 80 },
+   { "_id" : 3, "sku" : "cashews", description: "product 3", "instock" : 60 },
+   { "_id" : 4, "sku" : "pecans", description: "product 4", "instock" : 70 },
+   { "_id" : 5, "sku": null, description: "Incomplete" },
+   { "_id" : 6 }
+])
+
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "inventory",
+      localField: "item",
+      foreignField: "sku",
+      as: "inventory_item"
+    }
+  }
+])
+
+## Unwind
+
+db.orders.insertMany([
+  { "_id" : 1, "item" : "MON1003", "price" : 350, "quantity" : 2, "specs" :
+[ "27 inch", "Retina display", "1920x1080" ], "type" : "Monitor" }
+])
+
+db.inventory.insertMany([
+  { "_id" : 1, "sku" : "MON1003", "type" : "Monitor", "instock" : 120,
+  "size" : "27 inch", "resolution" : "1920x1080" },
+  { "_id" : 2, "sku" : "MON1012", "type" : "Monitor", "instock" : 85,
+  "size" : "23 inch", "resolution" : "1280x800" },
+  { "_id" : 3, "sku" : "MON1031", "type" : "Monitor", "instock" : 60,
+  "size" : "23 inch", "display_type" : "LED" }
+])
+
+db.orders.aggregate([
+   {
+      $unwind: "$specs"
+   },
+   {
+      $lookup:
+         {
+            from: "inventory",
+            localField: "specs",
+            foreignField: "size",
+            as: "inventory_docs"
+        }
+   },
+   {
+      $match: { "inventory_docs": { $ne: [] } }
+   }
+])
+
+# merge fields from two collections
+db.orders.insert([
+   { "_id" : 1, "item" : "almonds", "price" : 12, "quantity" : 2 },
+   { "_id" : 2, "item" : "pecans", "price" : 20, "quantity" : 1 }
+])
+
+db.items.insert([
+  { "_id" : 1, "item" : "almonds", description: "almond clusters", "instock" : 120 },
+  { "_id" : 2, "item" : "bread", description: "raisin and nut bread", "instock" : 80 },
+  { "_id" : 3, "item" : "pecans", description: "candied pecans", "instock" : 60 }
+])
+
+
+db.orders.aggregate([
+   {
+      $lookup: {
+         from: "items",
+         localField: "item",    // field in the orders collection
+         foreignField: "item",  // field in the items collection
+         as: "fromItems"
+      }
+   },
+   {
+      $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromItems", 0 ] }, "$$ROOT" ] } }
+   },
+   { $project: { fromItems: 0 } }
+])

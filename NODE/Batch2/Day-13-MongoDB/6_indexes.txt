@@ -1,0 +1,16 @@
+db.users.createIndex( { name: -1 } ) # descending order -1
+db.users.createIndex( { name: 1 } ) # ascening order
+
+db.users.createIndex( { name: -1, score: 1 } )
+
+db.users.createIndex( { address.city: 1 } )
+
+db.users.createIndex( <key and index type specification>, { unique: true } )
+
+db.users.getIndexes()
+
+db.users.dropIndex( { "name": 1 } )
+
+#
+db.users.createIndex( { "name": -1 } )
+db.users.dropIndex( { "name": 1 } ) # Index not found
