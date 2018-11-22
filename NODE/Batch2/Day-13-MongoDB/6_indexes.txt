@@ -14,3 +14,9 @@ db.users.dropIndex( { "name": 1 } )
 #
 db.users.createIndex( { "name": -1 } )
 db.users.dropIndex( { "name": 1 } ) # Index not found
+
+db.user.dropIndexes()
+
+db.people.find(
+   { name: "John Doe", zipcode: { $gt: "63000" } }
+).hint( { zipcode: 1 } )
