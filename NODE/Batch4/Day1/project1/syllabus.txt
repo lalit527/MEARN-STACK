@@ -5,7 +5,7 @@
 5. Templating Engine
 6. MVC
 7. Routing
-8. Relational DB/ MongoDB(Sequelize)
+8. Relational DB/ NoSQL(Sequelize)
 9. MongoDB/ Mongoose
 10. Session/ Cookie
 11. AUthentication/ Authorization
@@ -14,3 +14,6 @@
 14. Rest API
 15. WebSockets
 16. Deployment
+
+17. Advanced Node
+18. Advanced MongoDB
