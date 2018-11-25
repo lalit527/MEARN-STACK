@@ -2,7 +2,7 @@ let sum = (a, b, cb) => {
   cb(a + b);
 }
 
-sum(a, b, (result) => {
+sum(2, 3, (result) => {
   console.log(result);
 });
 
