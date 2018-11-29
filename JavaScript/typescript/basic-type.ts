@@ -1,3 +1,5 @@
+
+
 // number
 let x: number = 5;
 let decimal:number = 5.6;
