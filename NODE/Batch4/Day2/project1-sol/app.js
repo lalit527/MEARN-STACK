@@ -8,12 +8,26 @@ const fileHelper = require('./fileHelper');
 let handler = (req, res) => {
   console.log(req.url);
   if (req.url === '/') {
-    let data = fileHelper.readFileData('todo.txt');
-    let result = fileHelper.writeFileData('todo1.txt', data);
-    res.write(`<h1>Hello World</h1>${data}`);
-    
+    fileHelper.readFileData('todo.txt').
+      then((data) => {
+        res.write(`<h1>Hello World</h1>${data}`);
+        res.end();
+      }).
+      catch((err) => {
+        res.write(`<h1>Hello World</h1>${'No file'}`);
+      });
+    // fileHelper.readFileData('todo.txt', (err, data) => {
+    //   if (err) {
+    //     res.write(`<h1>Hello World</h1>${'No file'}`);
+    //   } else {
+    //     res.write(`<h1>Hello World</h1>${data}`);
+    //     res.end();
+    //     // let result = fileHelper.writeFileData('todo1.txt', data);
+    //   }
+    // });
   } else if (req.url === '/node') {
     res.write('<h1>Hello Node</h1>');
+    res.end();
   } else if (req.url === '/python') {
     res.setHeader('x-auth-token', 'khebwfhbelwbbjb');
     res.write('<h1>Hello Node</h1>');
@@ -22,6 +36,7 @@ let handler = (req, res) => {
                 <input type="text" name="staus" placeholder="status">
                 <input type="submit" value="Submit">
               </form>`);
+    res.end();
   } else if (req.method === 'POST' && req.url === '/save_user') {
     let result = [];
 
@@ -36,10 +51,12 @@ let handler = (req, res) => {
     });
 
     res.writeHead(301, {Location: '/python'});
+    res.end();
   } else {
     res.writeHead(301, {Location: '/'});
+    res.end();
   }
-  res.end();
+ 
 }
 const server = http.createServer(handler);
 
