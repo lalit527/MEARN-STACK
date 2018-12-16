@@ -5,17 +5,35 @@ const { parse } = require('querystring');
 const fileHelper = require('./fileHelper');
 
 
+// let handler = async (req, res) => {
+//   console.log(req.url);
+//   if (req.url === '/') {
+//     let data = await fileHelper.readFileData('todo.txt');
+//     res.write(`<h1>Hello World</h1>${data}`);
+//     res.end();
+
+
 let handler = (req, res) => {
   console.log(req.url);
   if (req.url === '/') {
-    fileHelper.readFileData('todo.txt').
-      then((data) => {
+    let data = fileHelper.readFileData(function* () {
+      try {
+        let data = yield 'todo.txt';
         res.write(`<h1>Hello World</h1>${data}`);
-        res.end();
-      }).
-      catch((err) => {
-        res.write(`<h1>Hello World</h1>${'No file'}`);
-      });
+      } catch (err) {
+          res.write(`<h1>Hello World</h1>${'No file'}`);
+      } finally {
+          res.end();
+      }
+    });
+    // fileHelper.readFileData('todo.txt').
+    //   then((data) => {
+    //     res.write(`<h1>Hello World</h1>${data}`);
+    //     res.end();
+    //   }).
+    //   catch((err) => {
+    //     res.write(`<h1>Hello World</h1>${'No file'}`);
+    //   });
     // fileHelper.readFileData('todo.txt', (err, data) => {
     //   if (err) {
     //     res.write(`<h1>Hello World</h1>${'No file'}`);

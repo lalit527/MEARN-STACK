@@ -13,28 +13,52 @@ const fs = require('fs');
 // };
 
 // Method2 : Promises
-let readFileData = (filename, cb) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filename, (err, result) => {
-      if (err) {
-        reject(err);
-        return;
-      } else {
-        resolve(result.toString());
-      }
-    });
-  });
-  
-};
-// let readFileData = (filename) => {
-//   fs.readFile(filename, (err, result) => {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       return result.toString();
-//     }
+// let readFileData = (filename, cb) => {
+//   return new Promise((resolve, reject) => {
+//     fs.readFile(filename, (err, result) => {
+//       if (err) {
+//         reject(err);
+//         return;
+//       } else {
+//         resolve(result.toString());
+//       }
+//     });
 //   });
+  
 // };
+
+// Method3 : Asyn-Await
+// let readFileData = async (filename) => {
+//     let data = await (function() { 
+//       return new Promise((resolve, reject) => {
+//         fs.readFile(filename, (err, result) => {
+//           if (err) {
+//             reject(err);
+//             return;
+//           } else {
+//             resolve(result.toString());
+//           }
+//         });
+//       }); 
+//     })().then((data) => {
+//       return data;
+//     });
+// };
+
+
+// Method4 : Generators
+let readFileData = (gen) => {
+  let g = gen();
+  let filename = g.next().value;
+  fs.readFile(filename, (err, result) => {
+    if (err) {
+      return g.throw(err);
+    } else {
+      g.next(result.toString());
+    }
+  });
+};
+
 let writeFileData = (filename, data) => {
   fs.writeFile(filename, data, (err, result) => {
     if (err) {
