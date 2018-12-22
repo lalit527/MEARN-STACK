@@ -5,8 +5,9 @@ const readData = (user, cb) => {
     if(err) {
       cb(err);
     } else {
-      let allUsers = data.toString();
-      cb('', allUsers);
+      let allUsers = data.toString().split('\n');
+      let foundUser = allUsers.indexOf(user);
+      cb('', user);
     }
   });
 }

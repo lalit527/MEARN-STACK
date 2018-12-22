@@ -1,2 +1,2 @@
-User1
-User2
+User1 pass
+User2 pass
