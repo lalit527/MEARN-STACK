@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./router');
 const routes = router();
+const userRoutes = require('./app/user/user.router')();
 
 let foo = (req, res, next) => {
   console.log('Foo Called');
@@ -23,6 +24,8 @@ let getInfo = (req, res, next) => {
 app.use([getInfo]);
 
 app.use('/user/v1', routes);
+
+app.use('/api/v1/user', userRoutes);
 
 app.use(morgan('combined'));
 
