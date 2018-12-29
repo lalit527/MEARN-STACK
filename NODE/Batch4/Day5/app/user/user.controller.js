@@ -11,6 +11,19 @@ const showProfile = (req, res) => {
   })
 }
 
+const addUser = (req, res) => {
+  let user = req.body;
+  userModel.saveData(user, (err, data) => {
+    if(err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      res.send(data);
+    }
+  });
+}
+
 module.exports = {
-  showProfile
+  showProfile,
+  addUser
 };
