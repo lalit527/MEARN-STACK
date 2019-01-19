@@ -1,0 +1,7 @@
+In Week6 App change fs handling with fs stream.
+
+Topics to read:-
+  1. Events
+  2. Streams
+  3. fs
+  4. process
