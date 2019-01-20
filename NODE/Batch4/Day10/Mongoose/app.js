@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./app/routes');
-const mongoConnect = require('./utils/database').mongoConnect;
+const mongoConnect = require('./utils/database');
+const user = require('./app/user/user.model');
 // const userRoutes = require('./app/user/user.router')();
 
 
@@ -18,5 +19,5 @@ app.use(morgan('combined'));
 mongoConnect(() => {
   app.listen(7002, () => {
     console.log('Server Started');
-  })
-})
+  });
+});

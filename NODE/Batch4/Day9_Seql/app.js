@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./app/routes');
-const mongoConnect = require('./utils/database').mongoConnect;
+const sequelize = require('./utils/database');
 // const userRoutes = require('./app/user/user.router')();
 
 
@@ -15,8 +15,14 @@ app.use('/api/v1/user', router);
 
 app.use(morgan('combined'));
 
-mongoConnect(() => {
-  app.listen(7002, () => {
-    console.log('Server Started');
-  })
-})
+
+sequelize.sync()
+          .then(result => {
+            console.log(result);
+            app.listen(7002, () => {
+              console.log('Server Started');
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });

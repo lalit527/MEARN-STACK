@@ -18,5 +18,5 @@ app.use(morgan('combined'));
 mongoConnect(() => {
   app.listen(7002, () => {
     console.log('Server Started');
-  })
-})
+  });
+});
