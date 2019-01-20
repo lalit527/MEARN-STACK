@@ -1,7 +1,4 @@
-const mongoose = require('mongoose');
-const userModel = mongoose.model('User')
-
-// const userModel = require('./user.model');
+const userModel = require('./user.model');
 
 
 const showProfile = (req, res) => {
@@ -16,8 +13,9 @@ const showProfile = (req, res) => {
 
 const addUser = async (req, res) => {
   let params = req.body;
-  let {userName, email, password} = params;
-  let user = new userModel(userName, email, password);
+  let {userName: name, email, password} = params;
+  let user = new userModel({name, email, password});
+  console.log(userModel);
   user.save()
       .then(result => {
         console.log(result);
