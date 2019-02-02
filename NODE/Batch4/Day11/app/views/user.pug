@@ -1,0 +1,19 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title Signup Form
+  body
+    section.container
+      .login
+        h1 Create a Product
+        form(method='post', action=`update/${user.id}`)
+          p
+            input(type='text', name='email', value=`${user.name}`, placeholder='User Name', required='')
+          p
+            input(type='email', name='username', value=`${user.email}`, placeholder='email', required='')
+          p
+            input(type='password', name='pwd', value=`${user.password}`, placeholder='Password', required='')
+          p.submit
+            input(type='submit', name='', value='update')
