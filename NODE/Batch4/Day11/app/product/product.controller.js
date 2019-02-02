@@ -1,8 +1,8 @@
-const userModel = require('./user.model');
+const productModel = require('./product.model');
 
 
 const showProfile = (req, res) => {
-  userModel.find({}).then(result => {
+  productModel.find({}).then(result => {
     console.log(result);
     res.render('users/users', {users: result});
   })
