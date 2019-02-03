@@ -1,0 +1,19 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title Signup New User
+  body
+    section.container
+      .login
+        h1 Signup to the Account
+        form(method='post', action=`signup`)
+          p
+            input(type='email', name='email', placeholder='Email', required='')
+          p
+            input(type='text', name='name', placeholder='Name', required='')
+          p
+            input(type='password', name='password', placeholder='Password', required='')
+          p.submit
+            input(type='submit', name='', value='Signup')

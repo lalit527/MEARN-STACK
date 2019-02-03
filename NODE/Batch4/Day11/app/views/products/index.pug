@@ -6,8 +6,9 @@ html(lang='en')
     title User Detail
   body
     section.container
-      for user in users
-        P #{user.name}
-        P #{user.email}
+      for product in products
+        P #{product.name}
+        P #{product.category}
+        P #{product.price}
         p
-         a(href='user/'+user._id) details
+         a(href='product/'+product._id) details

@@ -1,0 +1,19 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title Signup Form
+  body
+    section.container
+      .login
+        h1 Create a Product
+        form(method='post', action=`update/${product.id}`)
+          p
+            input(type='text', name='name', value=`${product.name}`, placeholder='Product Name', required='')
+          p
+            input(type='text', name='category', value=`${product.category}`, placeholder='Category', required='')
+          p
+            input(type='text', name='price', value=`${product.price}`, placeholder='Price', required='')
+          p.submit
+            input(type='submit', name='', value='update')

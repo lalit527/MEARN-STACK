@@ -38,8 +38,11 @@ const loginUser = async(req, res) => {
   let params = req.body;
   let {email, password} = params;
   userModel.findByCredential(email, password).then((result) => {
+    console.log('Controller Success', result);
+    // res.cookie('Test');
     res.redirect('/api/v1/products');
   }).catch((err) => {
+    console.log('Controller Error', err);
     res.render('users/login', {error: err})
   })
 }

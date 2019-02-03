@@ -1,30 +1,21 @@
-const userModel = require('./user.model');
+const productModel = require('./product.model');
 
 
-const showProfile = (req, res) => {
-  userModel.find({}).then(result => {
+const showAllProducts = (req, res) => {
+  productModel.find({}).then(result => {
     console.log(result);
-    res.render('users/users', {users: result});
+    res.render('products/index', {products: result});
   })
   .catch(err => {
     res.send(err);
   });
 }
 
-const getSignup = async (req, res) => {
-  res.render('users/signup');
-}
-
-const getLoginUser = async (req, res) => {
-  res.render('users/login');
-}
-
-const addUser = async (req, res) => {
+const addProduct = async (req, res) => {
   let params = req.body;
-  let {name, email, password} = params;
-  let user = new userModel({name, email, password});
-  console.log(userModel);
-  user.save()
+  let {name, category, price} = params;
+  let product = new productModel({name, category, price});
+  product.save()
       .then(result => {
         res.redirect('/api/v1/products');
       })
@@ -34,14 +25,8 @@ const addUser = async (req, res) => {
       });
 }
 
-const loginUser = async(req, res) => {
-  let params = req.body;
-  let {email, password} = params;
-  userModel.findByCredential(email, password).then((result) => {
-    res.redirect('/api/v1/products');
-  }).catch((err) => {
-    res.render('users/login', {error: err})
-  })
+const getAddProduct = async (req, res) => {
+  res.render('products/add');
 }
 
 const showUserDetail = (req, res) => {
@@ -68,11 +53,9 @@ const updateUserDetail = (req, res) => {
 }
 
 module.exports = {
-  showProfile,
-  addUser,
+  showAllProducts,
+  addProduct,
   showUserDetail,
   updateUserDetail,
-  getSignup,
-  getLoginUser,
-  loginUser
+  getAddProduct
 };
