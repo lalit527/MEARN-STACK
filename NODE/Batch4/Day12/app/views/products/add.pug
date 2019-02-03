@@ -1,0 +1,19 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title Product Page
+  body
+    section.container
+      .login
+        h1 Create a Product
+        form(method='post', action=`add`)
+          p
+            input(type='text', name='name', placeholder='Name', required='')
+          p
+            input(type='text', name='category', placeholder='Category', required='')
+          p
+            input(type='number', name='price', placeholder='Price', required='')
+          p.submit
+            input(type='submit', name='', value='Add')
