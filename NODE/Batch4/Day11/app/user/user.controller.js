@@ -11,20 +11,37 @@ const showProfile = (req, res) => {
   });
 }
 
+const getSignup = async (req, res) => {
+  res.render('users/signup');
+}
+
+const getLoginUser = async (req, res) => {
+  res.render('users/login');
+}
+
 const addUser = async (req, res) => {
   let params = req.body;
-  let {userName: name, email, password} = params;
+  let {name, email, password} = params;
   let user = new userModel({name, email, password});
   console.log(userModel);
   user.save()
       .then(result => {
-        console.log(result);
-        res.send('ok');
+        res.redirect('/api/v1/products');
       })
       .catch(err => {
         console.log(err);
         res.send(err);
       });
+}
+
+const loginUser = async(req, res) => {
+  let params = req.body;
+  let {email, password} = params;
+  userModel.findByCredential(email, password).then((result) => {
+    res.redirect('/api/v1/products');
+  }).catch((err) => {
+    res.render('users/login', {error: err})
+  })
 }
 
 const showUserDetail = (req, res) => {
@@ -54,5 +71,8 @@ module.exports = {
   showProfile,
   addUser,
   showUserDetail,
-  updateUserDetail
+  updateUserDetail,
+  getSignup,
+  getLoginUser,
+  loginUser
 };

@@ -1,30 +1,32 @@
 const productModel = require('./product.model');
 
 
-const showProfile = (req, res) => {
+const showAllProducts = (req, res) => {
   productModel.find({}).then(result => {
     console.log(result);
-    res.render('users/users', {users: result});
+    res.render('products/index', {products: result});
   })
   .catch(err => {
     res.send(err);
   });
 }
 
-const addUser = async (req, res) => {
+const addProduct = async (req, res) => {
   let params = req.body;
-  let {userName: name, email, password} = params;
-  let user = new userModel({name, email, password});
-  console.log(userModel);
-  user.save()
+  let {name, category, price} = params;
+  let product = new productModel({name, category, price});
+  product.save()
       .then(result => {
-        console.log(result);
-        res.send('ok');
+        res.redirect('/api/v1/products');
       })
       .catch(err => {
         console.log(err);
         res.send(err);
       });
+}
+
+const getAddProduct = async (req, res) => {
+  res.render('products/add');
 }
 
 const showUserDetail = (req, res) => {
@@ -51,8 +53,9 @@ const updateUserDetail = (req, res) => {
 }
 
 module.exports = {
-  showProfile,
-  addUser,
+  showAllProducts,
+  addProduct,
   showUserDetail,
-  updateUserDetail
+  updateUserDetail,
+  getAddProduct
 };

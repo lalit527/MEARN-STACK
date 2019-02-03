@@ -15,4 +15,19 @@ const userSchema = new Schema({
   }
 });
 
+userSchema.statics.findByCredential = function(email, password) {
+  const user = this;
+  return new Promise((resolve, reject) => {
+    user.findOne({email}).then((result) => {
+      if (password === result.password) {
+        return resolve(result);
+      }
+      return reject(`Passord doesnt match for ${result.email}`);
+    }).catch((err) => {
+      return reject('Email Not Found');
+    })
+  })
+}
+
+
 module.exports = mongoose.model('User', userSchema);

@@ -17,8 +17,20 @@ const routes = (router) => {
     userController.updateUserDetail(req, res);
   });
 
+  router.get('/signup', (req, res) => {
+    userController.getSignup(req, res);
+  });
+
   router.post('/signup', (req, res) => {
     userController.addUser(req, res);
+  });
+
+  router.get('/login', (req, res) => {
+    userController.getLoginUser(req, res);
+  });
+
+  router.post('/login', (req, res) => {
+    userController.loginUser(req, res);
   });
 };
 

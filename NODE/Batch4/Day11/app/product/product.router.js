@@ -8,16 +8,21 @@ const routes = (router) => {
     productController.showAllProducts(req, res);
   });
 
-  router.get('/product/:id', (req, res) => {
-    userController.showProductDetail(req, res);
+  router.get('/product/detail/:id', (req, res) => {
+    productController.showProductDetail(req, res);
   });
+  
 
   router.post('/product/update/:id', (req, res) => {
-    userController.updateProductDetail(req, res);
+    productController.updateProductDetail(req, res);
   });
 
-  router.post('/signup', (req, res) => {
-    userController.addProduct(req, res);
+  router.post('/product/add', (req, res) => {
+    productController.addProduct(req, res);
+  });
+
+  router.get('/product/add', (req, res) => {
+    productController.getAddProduct(req, res);
   });
 };
 
