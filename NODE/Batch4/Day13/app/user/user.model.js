@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const validator = require('validator');
 
 const config = require('./../../config/auth.config');
 
@@ -8,7 +10,11 @@ const userSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    validate: {
+      validator: validator.isEmail,
+      message: '{VALUE} is not a valid email'
+    }
   },
   name: {
     type: String
@@ -28,16 +34,35 @@ const userSchema = new Schema({
   }]
 });
 
+
+userSchema.pre('save', function(next) {
+  let user = this;
+  console.log('bcrypt', user);
+  if(user.isModified('password')) {
+    bcrypt.genSalt(10, function(err, salt) {
+      bcrypt.hash(user.password, salt, function(err, hash) {
+        user.password = hash;
+        next();
+      })
+    })
+  } else {
+    next();
+  }
+})
+
 userSchema.statics.findByCredential = function(email, password) {
   const user = this;
   return new Promise((resolve, reject) => {
     console.log('cred', email, password);
     user.findOne({email}).then((result) => {
       console.log('success', result);
-      if (password === result.password) {
-        return resolve(result);
-      }
-      return reject(`Passord doesnt match for ${result.email}`);
+      bcrypt.compare(password, result.password, function(err, res) {
+          if(err) {
+            return reject(`Passord doesnt match for ${result.email}`);
+          } 
+          resolve(result);
+      }); 
+      
     }).catch((err) => {
       console.log('fails', email);
       return reject('Email Not Found');
@@ -76,6 +101,5 @@ userSchema.statics.findByToken = function(token) {
     'tokens.access': 'auth'
   });
 }
-
 
 module.exports = mongoose.model('User', userSchema);
