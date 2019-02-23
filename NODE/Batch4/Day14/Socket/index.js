@@ -25,6 +25,10 @@ app.get('/news', function(req, res){
   res.sendFile(__dirname + '/public/news.html');
 });
 
+app.get('/', function(req, res){
+  res.redirect('/chat');
+});
+
 chatLib.socketFunc(io);
 newsLib.socketFunc(io);
 
